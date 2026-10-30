@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="eyebrow">SAVED FOR ANOTHER EVENING</view><view class="collection-title">留给下一次的小心动</view>
+  <view class="collection-note">喜欢的配方，猫咪替你记在这里。</view>
+  <view class="collection-count" wx:if="{{cards.length}}">共收藏 {{cards.length}} 杯配方</view><recipe-card wx:for="{{cards}}" wx:key="id" card="{{item}}"/><view wx:if="{{!cards.length}}" class="empty"><image src="/assets/cat-bartender.png"/><view class="empty-title">还没有收藏的配方呢</view><view>看到心仪的那杯，记得点一下收藏。</view><button class="text-button" bindtap="goHome">去翻翻酒单 →</button></view>
+  <view class="footer-note">理性饮酒 · 未满 18 周岁禁止饮酒</view>
+</view>

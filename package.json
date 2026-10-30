@@ -1,0 +1,36 @@
+{
+  "name": "cat-tavern",
+  "version": "0.1.0",
+  "private": true,
+  "description": "猫咪酒馆 · 微信小程序与云托管服务",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p miniprogram/tsconfig.json && tsc --noEmit -p server/tsconfig.json",
+    "check:templates": "node scripts/check-miniprogram.mjs",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "npm run typecheck && npm run check:templates && npm test",
+    "server:dev": "tsx watch server/src/index.ts",
+    "server:build": "tsc -p server/tsconfig.json",
+    "server:start": "node dist/server/src/index.js",
+    "db:seed": "tsx server/src/seed.ts",
+    "iba:images": "tsx scripts/import-iba-images.ts",
+    "assets": "node scripts/generate-assets.mjs"
+  },
+  "dependencies": {
+    "@cloudbase/node-sdk": "^3.0.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^6.0.3",
+    "fast-xml-parser": "^5.0.0",
+    "miniprogram-api-typings": "^4.0.0",
+    "sass": "^1.80.0",
+    "sharp": "^0.34.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}

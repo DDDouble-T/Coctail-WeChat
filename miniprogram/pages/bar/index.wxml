@@ -1,0 +1,12 @@
+<view class="page">
+  <view class="eyebrow">MAKE YOURSELF AT HOME</view><view class="bar-title-row"><view class="bar-heading">我的小小酒吧 <text>⌂</text></view><button class="favorites-link" bindtap="openFavorites">♡ 我的收藏</button></view><view class="bar-subtitle">把手边的材料告诉喵咪</view>
+  <view wx:if="{{notice}}" class="notice">{{notice}}</view>
+  <view class="section-heading"><text class="section-title">我的材料柜</text><view class="cabinet-actions"><button wx:if="{{ownedCount}}" class="text-button" bindtap="clearBar">清空</button></view></view>
+  <view class="selected-chips" wx:if="{{selected.length}}"><button wx:for="{{selected}}" wx:key="id" data-id="{{item.id}}" bindtap="toggleIngredient" aria-label="移除{{item.name}}">{{item.name}} <text>×</text></button></view>
+  <view class="cabinet-empty" wx:else><text>小酒柜还是空的</text><view>不必拥有整间酒吧，从一瓶基酒开始。</view></view>
+  <view class="ingredient-picker"><view wx:for="{{groups}}" wx:key="id" class="ingredient-group"><button class="group-heading" data-id="{{item.id}}" bindtap="toggleGroup" aria-expanded="{{item.open}}"><view><text class="group-name">{{item.label}}</text><text class="group-english">{{item.english}}</text></view><view><text wx:if="{{item.count}}" class="group-count">已选 {{item.count}}</text><text class="chevron">{{item.open ? '−' : '+'}}</text></view></button><view class="ingredient-options" wx:if="{{item.open}}"><button wx:for="{{item.items}}" wx:for-item="ingredient" wx:key="id" class="ingredient-option {{ingredient.selected ? 'selected' : ''}}" data-id="{{ingredient.id}}" bindtap="toggleIngredient" aria-pressed="{{ingredient.selected}}"><view class="checkbox">{{ingredient.selected ? '✓' : ''}}</view><view><view>{{ingredient.name}}</view><text>{{ingredient.english}}</text></view></button></view></view></view>
+  <view class="section-heading"><view><view class="section-title">今晚能调这几杯</view><view class="muted small">{{readyCount ? '材料齐全的已排在最前面' : '再添一点，离心仪的那杯更近一点'}}</view></view><text class="pill" wx:if="{{ownedCount}}">{{cards.length}} 杯可探索</text></view>
+  <view wx:if="{{!ownedCount}}" class="empty"><image src="/assets/cat-bartender.png" mode="aspectFit" /><view class="empty-title">猫咪在等你开柜呢</view><view>先去上方勾选你家里现有的材料吧～</view></view>
+  <block wx:else><recipe-card wx:for="{{cards}}" wx:key="id" card="{{item}}"/><view wx:if="{{!cards.length}}" class="empty"><view class="empty-title">再选几样，试试看</view><view>只展示最多缺 2 种必备材料的配方，装饰不计入。</view></view></block>
+  <view class="footer-note">理性饮酒 · 未满 18 周岁禁止饮酒</view>
+</view>

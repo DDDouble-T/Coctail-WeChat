@@ -1,0 +1,24 @@
+:host { display: block; margin-bottom: 22rpx; }
+.recipe-card { display: flex; align-items: center; padding: 24rpx 24rpx 24rpx 14rpx; background: #fffcf7; border: 2rpx solid #eee2d3; border-radius: 30rpx; box-shadow: 0 5rpx 0 rgba(102, 70, 40, .025); color: #493a30; }
+.illustration { width: 160rpx; height: 168rpx; flex-shrink: 0; margin-right: 16rpx; background: #f8eee0; border-radius: 24rpx; overflow: hidden; }
+image { display: block; width: 100%; height: 100%; }
+.content { flex: 1; min-width: 0; }
+.name-row { display: flex; align-items: center; justify-content: space-between; gap: 8rpx; }
+.name { font-size: 30rpx; font-weight: 650; }
+.arrow { font-size: 30rpx; color: #b29a83; }
+.english { color: #9b8674; font-size: 21rpx; line-height: 1.45; margin-top: 1rpx; }
+.tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8rpx; font-size: 20rpx; color: #96816d; margin: 14rpx 0 12rpx; }
+.dot { color: #cdbda9; }
+.difficulty { background: #f4ede2; border-radius: 8rpx; padding: 1rpx 9rpx; }
+.meta, .match-row { display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 21rpx; color: #a48c75; gap: 4rpx; }
+.owned { color: #7e997b; }
+.status { font-size: 20rpx; padding: 0 9rpx; border-radius: 6rpx; background: #eee8e0; color: #9c8c7c; }
+.status.ready { background: #e6efdf; color: #6c895c; }
+.status.almost { background: #fff0ce; color: #af8944; }
+.track { height: 8rpx; background: #eee7dc; border-radius: 8rpx; margin: 14rpx 0 10rpx; overflow: hidden; }
+.fill { height: 100%; background: #cabb9f; border-radius: 8rpx; transition: width .18s ease; }
+.fill.ready { background: #a7bf91; }
+.fill.almost { background: #e7bc75; }
+.missing, .ready-copy { font-size: 21rpx; line-height: 1.5; color: #ae9174; }
+.ready-copy { color: #82936e; }
+.far { opacity: .64; }

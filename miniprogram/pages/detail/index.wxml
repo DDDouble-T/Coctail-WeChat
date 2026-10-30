@@ -1,0 +1,15 @@
+<view class="page detail" wx:if="{{found && recipe}}">
+  <view class="recipe-hero"><view class="hero-caption">A LITTLE RECIPE, A LITTLE JOY</view><image src="{{recipe.image_url}}" mode="aspectFill"/><text class="hero-note">猫咪店长的调酒笔记 ✦</text></view>
+  <view class="title-row"><view><view class="recipe-name">{{recipe.name_zh}}</view><view class="recipe-english">{{recipe.name_en}}</view></view><button class="favorite-button {{favorite ? 'saved' : ''}}" bindtap="favorite" aria-label="{{favorite ? '取消收藏' : '收藏'}}">{{favorite ? '♥' : '♡'}}</button></view>
+  <view class="recipe-tags"><text class="pill">{{iba}}</text><text class="pill">{{recipe.glass}}</text><text class="pill">{{style}}</text></view>
+  <view class="taste"><text>这一杯的性格</text><view>{{recipe.taste}}</view></view>
+  <view class="section-heading"><view><text class="section-title">准备这些材料</text><view class="muted small">点一下材料，就能放进或移出酒柜</view></view><text class="supply-status {{missingCount ? '' : 'ready'}}">{{missingCount ? '还差 ' + missingCount + ' 种' : '✓ 可以开调'}}</text></view>
+  <view class="ingredients"><button wx:for="{{lines}}" wx:key="id" class="ingredient-line {{item.owned ? 'owned' : 'missing'}} {{item.garnish || item.optional ? 'optional' : ''}}" data-id="{{item.id}}" bindtap="toggleOwned" aria-pressed="{{item.owned}}"><view class="ingredient-check">{{item.owned ? '✓' : '+'}}</view><view class="ingredient-name">{{item.name}}<text wx:if="{{item.optional}}">可选配料 · 不影响能否制作</text><text wx:elif="{{item.garnish}}">装饰 · 可选</text></view><text class="amount">{{item.amount}}</text></button></view>
+  <view class="garnish-note">装饰可以随心意，缺了也不影响这杯的匹配。</view>
+  <view class="section-heading"><text class="section-title">跟着猫咪，一步一步</text><text class="muted small">THE METHOD</text></view>
+  <view class="steps"><view wx:for="{{recipe.steps}}" wx:key="index" class="step"><view class="step-number">{{index + 1 < 10 ? '0' + (index + 1) : index + 1}}</view><view class="step-copy">{{item}}</view></view></view>
+  <view class="cat-note"><image src="/assets/cat-bartender.png" mode="aspectFit"/><view><text>店长的小声叮嘱</text><view>{{recipe.healing_copy}}</view></view></view>
+  <button class="source" bindtap="copySource">配方依据 · IBA 官方　↗ <text>点击复制来源链接</text></button>
+  <view class="footer-note">理性饮酒 · 未满 18 周岁禁止饮酒</view>
+</view>
+<view class="page empty" wx:else><image src="/assets/cat-bartender.png"/><view class="empty-title">这杯暂时不在酒单上</view><view>链接可能已经更新，回酒馆看看吧。</view><button class="text-button" bindtap="goHome">返回酒馆 →</button></view>

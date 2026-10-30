@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+project.private.config.json
+server/.env
+.env
+*.log
+.DS_Store
+artifacts/

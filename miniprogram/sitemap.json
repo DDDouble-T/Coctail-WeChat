@@ -1,0 +1,1 @@
+{"desc": "配方可索引，本地酒柜和收藏不索引", "rules": [{"action":"allow","page":"pages/home/index"},{"action":"allow","page":"pages/detail/index"},{"action":"disallow","page":"*"}]}

@@ -1,0 +1,15 @@
+<view class="recipe-card {{card.matching && card.status === 'far' ? 'far' : ''}}" bindtap="open" role="button" aria-label="查看{{card.name}}配方">
+  <view class="illustration"><image src="{{card.image}}" mode="aspectFill" /></view>
+  <view class="content">
+    <view class="name-row"><text class="name">{{card.name}}</text><text class="arrow">↗</text></view>
+    <view class="english">{{card.english}}</view>
+    <view class="tags"><text>{{card.glass}}</text><text class="dot">·</text><text>{{card.style}}</text><text class="difficulty" wx:if="{{!card.matching}}">{{card.difficulty}}</text></view>
+    <view class="meta" wx:if="{{!card.matching}}"><text>需要 {{card.essential}} 种材料</text><text class="owned" wx:if="{{card.showProgress}}">✓ 已备齐 {{card.matched}}/{{card.essential}}</text></view>
+    <block wx:else>
+      <view class="match-row"><text>已备齐 {{card.matched}}/{{card.essential}} 种</text><text class="status {{card.status}}">{{card.statusLabel}}</text></view>
+      <view class="track"><view class="fill {{card.status}}" style="width: {{card.progress}}%;" /></view>
+      <view class="missing" wx:if="{{card.missing}}">缺：{{card.missing}}</view>
+      <view class="ready-copy" wx:else>材料都在，今晚就试试这一杯。</view>
+    </block>
+  </view>
+</view>

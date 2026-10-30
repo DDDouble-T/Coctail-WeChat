@@ -1,0 +1,823 @@
+{
+  "source_sitemap": "https://iba-world.com/wp-sitemap-posts-iba-cocktail-1.xml",
+  "generated_at": "2026-10-30T06:04:25.999Z",
+  "filter": "crayon-v1",
+  "cocktails": [
+    {
+      "slug": "alexander",
+      "article_url": "https://iba-world.com/iba-cocktail/alexander/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-alexander-669491364f7f2.webp",
+      "original_file": "originals/alexander.webp",
+      "crayon_file": "crayon/alexander-crayon.webp",
+      "original_sha256": "c7cdc3ed6159f0ceedb539b9db3eddf5534054fbeb89893f74dc45dda8f8158c"
+    },
+    {
+      "slug": "americano",
+      "article_url": "https://iba-world.com/iba-cocktail/americano/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-americano-669490fe3cb42.webp",
+      "original_file": "originals/americano.webp",
+      "crayon_file": "crayon/americano-crayon.webp",
+      "original_sha256": "9af770fd9266477e23c160ef7a946cb93ee66debc4d72f32ecbdbbe1cd9c1e91"
+    },
+    {
+      "slug": "angel-face",
+      "article_url": "https://iba-world.com/iba-cocktail/angel-face/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-angel-face-669490fe6df67.webp",
+      "original_file": "originals/angel-face.webp",
+      "crayon_file": "crayon/angel-face-crayon.webp",
+      "original_sha256": "f9c7fb5f5efd7ba3f62a62aed9b83f8f86bd8652cfd0863f09dc3194ad10a23a"
+    },
+    {
+      "slug": "aviation",
+      "article_url": "https://iba-world.com/iba-cocktail/aviation/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-aviation-66949102296a4.webp",
+      "original_file": "originals/aviation.webp",
+      "crayon_file": "crayon/aviation-crayon.webp",
+      "original_sha256": "685938fdd9c228089112cbfa7035d3a3cce848c01ad4c36b2757b831e8e5960c"
+    },
+    {
+      "slug": "between-the-sheets",
+      "article_url": "https://iba-world.com/iba-cocktail/between-the-sheets/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-between-the-sheets-669491023d7af.webp",
+      "original_file": "originals/between-the-sheets.webp",
+      "crayon_file": "crayon/between-the-sheets-crayon.webp",
+      "original_sha256": "4e5ecd0c6b2120882822478c1bcc3f98cad34bbdb9c90ecab995f60023069194"
+    },
+    {
+      "slug": "boulevardier",
+      "article_url": "https://iba-world.com/iba-cocktail/boulevardier/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-boulevardier-6694910552acd.webp",
+      "original_file": "originals/boulevardier.webp",
+      "crayon_file": "crayon/boulevardier-crayon.webp",
+      "original_sha256": "4a2a1c0ee93b4dcaaa418bea30d7a37d804516e97d9db92db0a446191c3e8528"
+    },
+    {
+      "slug": "brandy-crusta",
+      "article_url": "https://iba-world.com/iba-cocktail/brandy-crusta/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-brandy-crusta-6694910571bcb.webp",
+      "original_file": "originals/brandy-crusta.webp",
+      "crayon_file": "crayon/brandy-crusta-crayon.webp",
+      "original_sha256": "4b7f905ad1a9f4bfa642ce837f76f5b357e4932236ca17a26f789df8a1b84f5a"
+    },
+    {
+      "slug": "casino",
+      "article_url": "https://iba-world.com/iba-cocktail/casino/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-casino-6694910882cd6.webp",
+      "original_file": "originals/casino.webp",
+      "crayon_file": "crayon/casino-crayon.webp",
+      "original_sha256": "b9f4b0c023593700e7e53796658c0010bebc41c1158714a2f5afe58e0b21f083"
+    },
+    {
+      "slug": "clover-club",
+      "article_url": "https://iba-world.com/iba-cocktail/clover-club/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-clover-club-66949108a3e54.webp",
+      "original_file": "originals/clover-club.webp",
+      "crayon_file": "crayon/clover-club-crayon.webp",
+      "original_sha256": "bab3a4538a9fabaa50350a6b42e2c5a985f9ec47284631dbec9daae4aaa5b286"
+    },
+    {
+      "slug": "daiquiri",
+      "article_url": "https://iba-world.com/iba-cocktail/daiquiri/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-daiquiri-6694910c5866e.webp",
+      "original_file": "originals/daiquiri.webp",
+      "crayon_file": "crayon/daiquiri-crayon.webp",
+      "original_sha256": "3777b84e48332b139cfb1f96ec1b63f90e49140d010863659a3a165e4b52c994"
+    },
+    {
+      "slug": "dry-martini",
+      "article_url": "https://iba-world.com/iba-cocktail/dry-martini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-dry-martini-6694910fb500c.webp",
+      "original_file": "originals/dry-martini.webp",
+      "crayon_file": "crayon/dry-martini-crayon.webp",
+      "original_sha256": "10e114bbfd1dc97165fa0e2249f63af4980d483fed09b231650b846fd3ac92ac"
+    },
+    {
+      "slug": "gin-fizz",
+      "article_url": "https://iba-world.com/iba-cocktail/gin-fizz/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-gin-fizz-6694910fc2eab.webp",
+      "original_file": "originals/gin-fizz.webp",
+      "crayon_file": "crayon/gin-fizz-crayon.webp",
+      "original_sha256": "a917b70fa277bb36b7ac9d7046233dc0684b0f39034ffb0645541bcc7548e46e"
+    },
+    {
+      "slug": "hanky-panky",
+      "article_url": "https://iba-world.com/iba-cocktail/hanky-panky/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-hanky-panky-66949112edbf5.webp",
+      "original_file": "originals/hanky-panky.webp",
+      "crayon_file": "crayon/hanky-panky-crayon.webp",
+      "original_sha256": "10594fe7cbf8adbcddea8635e6b2bc8f6bc4cec01de5be521e3d468cca377a2a"
+    },
+    {
+      "slug": "john-collins",
+      "article_url": "https://iba-world.com/iba-cocktail/john-collins/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-john-collins-669491130ef87.webp",
+      "original_file": "originals/john-collins.webp",
+      "crayon_file": "crayon/john-collins-crayon.webp",
+      "original_sha256": "f7607db6cdcb9159b0dc5edca7b10e6c28c5b03b4bd1898b098783190d334b18"
+    },
+    {
+      "slug": "last-word",
+      "article_url": "https://iba-world.com/iba-cocktail/last-word/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-last-word-6694911607ddf.webp",
+      "original_file": "originals/last-word.webp",
+      "crayon_file": "crayon/last-word-crayon.webp",
+      "original_sha256": "7eecfc0c03881b07b36207e296b8f5510f07377d9232b3023011f19e9edb6508"
+    },
+    {
+      "slug": "manhattan",
+      "article_url": "https://iba-world.com/iba-cocktail/manhattan/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-manhattan-6694911627de7.webp",
+      "original_file": "originals/manhattan.webp",
+      "crayon_file": "crayon/manhattan-crayon.webp",
+      "original_sha256": "4bdf2651d301583d68e80bb1db675317a38c2fac1118af536d35fe4f23506a28"
+    },
+    {
+      "slug": "martinez",
+      "article_url": "https://iba-world.com/iba-cocktail/martinez/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-martinez-6694911927849.webp",
+      "original_file": "originals/martinez.webp",
+      "crayon_file": "crayon/martinez-crayon.webp",
+      "original_sha256": "8f3812192c9031e6788f9506169ba00af9a2915942442957fa60a59563860c26"
+    },
+    {
+      "slug": "mary-pickford",
+      "article_url": "https://iba-world.com/iba-cocktail/mary-pickford/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-mary-pickford-6694911933ea7.webp",
+      "original_file": "originals/mary-pickford.webp",
+      "crayon_file": "crayon/mary-pickford-crayon.webp",
+      "original_sha256": "421ae176e64954be14da166491b075edec47312dcd48539c246137ba5a043834"
+    },
+    {
+      "slug": "monkey-gland",
+      "article_url": "https://iba-world.com/iba-cocktail/monkey-gland/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-monkey-gland-6694911cbf5a2.webp",
+      "original_file": "originals/monkey-gland.webp",
+      "crayon_file": "crayon/monkey-gland-crayon.webp",
+      "original_sha256": "b9096cb744047769190fef79bfcdfa0a60d229678ae3326f7f9bc6f823f14f15"
+    },
+    {
+      "slug": "negroni",
+      "article_url": "https://iba-world.com/iba-cocktail/negroni/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-negroni-6694911cc3b65.webp",
+      "original_file": "originals/negroni.webp",
+      "crayon_file": "crayon/negroni-crayon.webp",
+      "original_sha256": "6945ccef121db46281276b52f4a38c92b33aa0c4c5fed14617a1708bb2eb97b8"
+    },
+    {
+      "slug": "old-fashioned",
+      "article_url": "https://iba-world.com/iba-cocktail/old-fashioned/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-old-fashioned-6694911fce360.webp",
+      "original_file": "originals/old-fashioned.webp",
+      "crayon_file": "crayon/old-fashioned-crayon.webp",
+      "original_sha256": "75b1c01f759e290357cf838257e1b45c89922b23a70f801f013b16472efacdaf"
+    },
+    {
+      "slug": "paradise",
+      "article_url": "https://iba-world.com/iba-cocktail/paradise/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-paradise-6694911fdbd4b.webp",
+      "original_file": "originals/paradise.webp",
+      "crayon_file": "crayon/paradise-crayon.webp",
+      "original_sha256": "dcfe2400709bc1d8ace7b463ee6431114df48a939d83e73bef67ed7747158858"
+    },
+    {
+      "slug": "planters-punch",
+      "article_url": "https://iba-world.com/iba-cocktail/planters-punch/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-planters-punch-66949122d41fb.webp",
+      "original_file": "originals/planters-punch.webp",
+      "crayon_file": "crayon/planters-punch-crayon.webp",
+      "original_sha256": "0b4de02c1d57b7d52b8792f85286e15fa3687b9790b94ccca6949d20067a7088"
+    },
+    {
+      "slug": "porto-flip",
+      "article_url": "https://iba-world.com/iba-cocktail/porto-flip/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-porto-flip-669491230cea4.webp",
+      "original_file": "originals/porto-flip.webp",
+      "crayon_file": "crayon/porto-flip-crayon.webp",
+      "original_sha256": "c5692b188e35f95fb8a2aea617b84e8f625c709da6847e0adb12a0d88e3e809a"
+    },
+    {
+      "slug": "ramos-fizz",
+      "article_url": "https://iba-world.com/iba-cocktail/ramos-fizz/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-ramos-fizz-669491260ca6c.webp",
+      "original_file": "originals/ramos-fizz.webp",
+      "crayon_file": "crayon/ramos-fizz-crayon.webp",
+      "original_sha256": "eeb4ca1d5bff7afcae63948e4c6a72637abd13e79a61e74c5c85ab9ae0c5dbed"
+    },
+    {
+      "slug": "remember-the-maine",
+      "article_url": "https://iba-world.com/iba-cocktail/remember-the-maine/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-remember-the-main-6694912622959.webp",
+      "original_file": "originals/remember-the-maine.webp",
+      "crayon_file": "crayon/remember-the-maine-crayon.webp",
+      "original_sha256": "82491983e16723684fc1af5b9c1c095a1eca2e9dc3cd186f7509af4e29cb4fdf"
+    },
+    {
+      "slug": "rusty-nail",
+      "article_url": "https://iba-world.com/iba-cocktail/rusty-nail/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-rusty-nail-66949129acfd1.webp",
+      "original_file": "originals/rusty-nail.webp",
+      "crayon_file": "crayon/rusty-nail-crayon.webp",
+      "original_sha256": "aa5a638c2a22a8778df2fbf13c2fd0ce16948a5114ede8f4034237b6743c1b59"
+    },
+    {
+      "slug": "sazerac",
+      "article_url": "https://iba-world.com/iba-cocktail/sazerac/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-sazerac-66949129b50d1.webp",
+      "original_file": "originals/sazerac.webp",
+      "crayon_file": "crayon/sazerac-crayon.webp",
+      "original_sha256": "eec4685940bcc1778a20e950b23352d423d11281646000ec80fe3db1a6a31f31"
+    },
+    {
+      "slug": "sidecar",
+      "article_url": "https://iba-world.com/iba-cocktail/sidecar/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-sidecar-6694912cb8aa9.webp",
+      "original_file": "originals/sidecar.webp",
+      "crayon_file": "crayon/sidecar-crayon.webp",
+      "original_sha256": "9aa64e09e11397d56fdf4e478f2951dcb51d23719181726bf3deb1aa22d479bf"
+    },
+    {
+      "slug": "stinger",
+      "article_url": "https://iba-world.com/iba-cocktail/stinger/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-stinger-6694912ce0b8d.webp",
+      "original_file": "originals/stinger.webp",
+      "crayon_file": "crayon/stinger-crayon.webp",
+      "original_sha256": "6561be8541b8d04c79c4ce465265b8c9f9dd87b1050dc43fca883e8aa5698231"
+    },
+    {
+      "slug": "tuxedo",
+      "article_url": "https://iba-world.com/iba-cocktail/tuxedo/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-tuxedo-6694912fd3b8f.webp",
+      "original_file": "originals/tuxedo.webp",
+      "crayon_file": "crayon/tuxedo-crayon.webp",
+      "original_sha256": "1d376a9f1e43fbea9db1676ada31078812eacad0e083c4b513a16e1ecfdecefc"
+    },
+    {
+      "slug": "vieux-carre",
+      "article_url": "https://iba-world.com/iba-cocktail/vieux-carre/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-vieux-carre-6694913015248.webp",
+      "original_file": "originals/vieux-carre.webp",
+      "crayon_file": "crayon/vieux-carre-crayon.webp",
+      "original_sha256": "b4258ca9b3cf20b946620c6d1e61898b2193c97b2d64070596edc3dd181950ba"
+    },
+    {
+      "slug": "whiskey-sour",
+      "article_url": "https://iba-world.com/iba-cocktail/whiskey-sour/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-whiskey-sour-66949132e6ae9.webp",
+      "original_file": "originals/whiskey-sour.webp",
+      "crayon_file": "crayon/whiskey-sour-crayon.webp",
+      "original_sha256": "130c49026b24f8d8205f7b47d8be6c19ccac21c10c00d34b85592b7749dd8132"
+    },
+    {
+      "slug": "white-lady",
+      "article_url": "https://iba-world.com/iba-cocktail/white-lady/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-white-lady-6694913318105.webp",
+      "original_file": "originals/white-lady.webp",
+      "crayon_file": "crayon/white-lady-crayon.webp",
+      "original_sha256": "f537e06fcd6c1fb60292cddcc58265a933d8e8c9eb27f67cbe46aec629909b8a"
+    },
+    {
+      "slug": "bellini",
+      "article_url": "https://iba-world.com/iba-cocktail/bellini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-bellini-6695cda4217da.webp",
+      "original_file": "originals/bellini.webp",
+      "crayon_file": "crayon/bellini-crayon.webp",
+      "original_sha256": "0c24a2630daf45447381447d6e612265e113d1e382dd22df0b18c1700293851a"
+    },
+    {
+      "slug": "black-russian",
+      "article_url": "https://iba-world.com/iba-cocktail/black-russian/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-black-russian-6695cda4183dc.webp",
+      "original_file": "originals/black-russian.webp",
+      "crayon_file": "crayon/black-russian-crayon.webp",
+      "original_sha256": "d6d9e1355b6c660a5eb99431e8279556ebeb4734881f32cc4b5eecb2c8a3b44f"
+    },
+    {
+      "slug": "bloody-mary",
+      "article_url": "https://iba-world.com/iba-cocktail/bloody-mary/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-bloody-mary-6695cda72fe0f.webp",
+      "original_file": "originals/bloody-mary.webp",
+      "crayon_file": "crayon/bloody-mary-crayon.webp",
+      "original_sha256": "ff7724a9c47b74d6ca690f1539f968e1a3b34dbe62852e98233d8287df3bf556"
+    },
+    {
+      "slug": "caipirinha",
+      "article_url": "https://iba-world.com/iba-cocktail/caipirinha/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-caipirinha-6695cda74b13a.webp",
+      "original_file": "originals/caipirinha.webp",
+      "crayon_file": "crayon/caipirinha-crayon.webp",
+      "original_sha256": "993d85164d61a00407def368a03101224c3dc4a24d0e1d26f814f4531f1eb9a9"
+    },
+    {
+      "slug": "cardinale",
+      "article_url": "https://iba-world.com/iba-cocktail/cardinale/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-cardinale-6695cdaa5f0d8.webp",
+      "original_file": "originals/cardinale.webp",
+      "crayon_file": "crayon/cardinale-crayon.webp",
+      "original_sha256": "a7b136bbb08b4c9bf9bdc884a33d2e5aea85aa9c4e632684c0d63624533ca670"
+    },
+    {
+      "slug": "champagne-cocktail",
+      "article_url": "https://iba-world.com/iba-cocktail/champagne-cocktail/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-champagne-cocktail-6695cdaa71bb2.webp",
+      "original_file": "originals/champagne-cocktail.webp",
+      "crayon_file": "crayon/champagne-cocktail-crayon.webp",
+      "original_sha256": "9ad462f64f594ba88eac501a6bc816ad8e59d6c70dfd0c8e2ed01c19392dfbec"
+    },
+    {
+      "slug": "corpse-reviver-2",
+      "article_url": "https://iba-world.com/iba-cocktail/corpse-reviver-2/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-corpse-reviver-2-6695cdad6da15.webp",
+      "original_file": "originals/corpse-reviver-2.webp",
+      "crayon_file": "crayon/corpse-reviver-2-crayon.webp",
+      "original_sha256": "cbf08d0b2cc88c79a3eeee1bc9e2607e043ddc72145fbab38b6e3df954c2d78a"
+    },
+    {
+      "slug": "cosmopolitan",
+      "article_url": "https://iba-world.com/iba-cocktail/cosmopolitan/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-cosmopolitan-6695cdae389dc.webp",
+      "original_file": "originals/cosmopolitan.webp",
+      "crayon_file": "crayon/cosmopolitan-crayon.webp",
+      "original_sha256": "01939ded71ae124537acbd274ec76a9a0493691a042c6fddf3994b0f09d7531f"
+    },
+    {
+      "slug": "cuba-libre",
+      "article_url": "https://iba-world.com/iba-cocktail/cuba-libre/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-cuba-libre-6695cdb0a6f80.webp",
+      "original_file": "originals/cuba-libre.webp",
+      "crayon_file": "crayon/cuba-libre-crayon.webp",
+      "original_sha256": "2cb7d5292c56a57f294358d4d96f2fee2ed055b513860d5a82ce9b03ca3e9426"
+    },
+    {
+      "slug": "french-75",
+      "article_url": "https://iba-world.com/iba-cocktail/french-75/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-french-75-6695cdb175e06.webp",
+      "original_file": "originals/french-75.webp",
+      "crayon_file": "crayon/french-75-crayon.webp",
+      "original_sha256": "15528e99c2f9e8633a9528dd05b7ec5c9843e8518f6683a486830e076e0e939e"
+    },
+    {
+      "slug": "french-connection",
+      "article_url": "https://iba-world.com/iba-cocktail/french-connection/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-french-connection-6695cdb3cc15f.webp",
+      "original_file": "originals/french-connection.webp",
+      "crayon_file": "crayon/french-connection-crayon.webp",
+      "original_sha256": "88cd8c27347f66998140ed7242fde0545b3b211c2226954c91e4d4590cd5523d"
+    },
+    {
+      "slug": "garibaldi",
+      "article_url": "https://iba-world.com/iba-cocktail/garibaldi/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-garibaldi-6695cdb4cbf81.webp",
+      "original_file": "originals/garibaldi.webp",
+      "crayon_file": "crayon/garibaldi-crayon.webp",
+      "original_sha256": "f9a50dc960f9550ffacf5ac01a43b4608e2a62736f169296c4e58492b29efded"
+    },
+    {
+      "slug": "grasshopper",
+      "article_url": "https://iba-world.com/iba-cocktail/grasshopper/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-grasshopper-6695cdb737498.webp",
+      "original_file": "originals/grasshopper.webp",
+      "crayon_file": "crayon/grasshopper-crayon.webp",
+      "original_sha256": "601faca1eb956fff1aef2e355f5708a81851d45e425ee55b240b06993177f780"
+    },
+    {
+      "slug": "hemingway-special",
+      "article_url": "https://iba-world.com/iba-cocktail/hemingway-special/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-hemingway-special-6695cdb814e5a.webp",
+      "original_file": "originals/hemingway-special.webp",
+      "crayon_file": "crayon/hemingway-special-crayon.webp",
+      "original_sha256": "384539f09382cf28f96001ad9aa17959e67955e756219dca94a171839f6af913"
+    },
+    {
+      "slug": "horses-neck",
+      "article_url": "https://iba-world.com/iba-cocktail/horses-neck/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-horses-neck-6695cdba5fadc.webp",
+      "original_file": "originals/horses-neck.webp",
+      "crayon_file": "crayon/horses-neck-crayon.webp",
+      "original_sha256": "8dfb72caf0cc7518eacae4f2cc3b2cf1ca8cd9dc513f2825b5493cfe5fdc1179"
+    },
+    {
+      "slug": "irish-coffee",
+      "article_url": "https://iba-world.com/iba-cocktail/irish-coffee/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-irish-coffee-copy-6695cdbb430cd.webp",
+      "original_file": "originals/irish-coffee.webp",
+      "crayon_file": "crayon/irish-coffee-crayon.webp",
+      "original_sha256": "2bd99725897eba5b626b50f3e35c1d4c888054ff00c85ef3b4b184335c3c1856"
+    },
+    {
+      "slug": "kir",
+      "article_url": "https://iba-world.com/iba-cocktail/kir/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-kir-6695cdbdbb2e1.webp",
+      "original_file": "originals/kir.webp",
+      "crayon_file": "crayon/kir-crayon.webp",
+      "original_sha256": "65ccf2420632160033a85a08101fcae72ad0c2c535320ce39716c934421cb628"
+    },
+    {
+      "slug": "lemon-drop-martini",
+      "article_url": "https://iba-world.com/iba-cocktail/lemon-drop-martini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-lemon-drop-martini-6695cdbe3eed7.webp",
+      "original_file": "originals/lemon-drop-martini.webp",
+      "crayon_file": "crayon/lemon-drop-martini-crayon.webp",
+      "original_sha256": "e9ba95e2d5a56d15545221e28347bb759eeaffa1084cbe1f7ca2554afe45317a"
+    },
+    {
+      "slug": "long-island-iced-tea",
+      "article_url": "https://iba-world.com/iba-cocktail/long-island-iced-tea/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-long-island-iced-tea-6695cdc10c463.webp",
+      "original_file": "originals/long-island-iced-tea.webp",
+      "crayon_file": "crayon/long-island-iced-tea-crayon.webp",
+      "original_sha256": "b8540eff50f0516af806690723180342b18e8fd7702ce9512b0c9a846d68c268"
+    },
+    {
+      "slug": "mai-tai",
+      "article_url": "https://iba-world.com/iba-cocktail/mai-tai/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-mai-tai-6695cdc169ea3.webp",
+      "original_file": "originals/mai-tai.webp",
+      "crayon_file": "crayon/mai-tai-crayon.webp",
+      "original_sha256": "e707b166439df61d82f57be990f85fee7fdf4697207eadb565e72d6a82c4c3f3"
+    },
+    {
+      "slug": "margarita",
+      "article_url": "https://iba-world.com/iba-cocktail/margarita/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-margarita-6695cdd7505e0.webp",
+      "original_file": "originals/margarita.webp",
+      "crayon_file": "crayon/margarita-crayon.webp",
+      "original_sha256": "41f393b41e3c35c37adcb68629c6be116afdc1b6408ac468e3f1044f77cc4036"
+    },
+    {
+      "slug": "mimosa",
+      "article_url": "https://iba-world.com/iba-cocktail/mimosa/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-mimosa-6695cdc4463c9.webp",
+      "original_file": "originals/mimosa.webp",
+      "crayon_file": "crayon/mimosa-crayon.webp",
+      "original_sha256": "cf7c5e68a5021fd1fa0ca81f42461deab7aeddde44dda1e8741bd898b82a8c19"
+    },
+    {
+      "slug": "mint-julep",
+      "article_url": "https://iba-world.com/iba-cocktail/mint-julep/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-mint-julep-6695cdc4aa398.webp",
+      "original_file": "originals/mint-julep.webp",
+      "crayon_file": "crayon/mint-julep-crayon.webp",
+      "original_sha256": "608907edc7282843a89e61bdd49b9071b4aaf80ccd919be281e71c5ac3d97a20"
+    },
+    {
+      "slug": "mojito",
+      "article_url": "https://iba-world.com/iba-cocktail/mojito/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-mojito-6695cdc755626.webp",
+      "original_file": "originals/mojito.webp",
+      "crayon_file": "crayon/mojito-crayon.webp",
+      "original_sha256": "95aa55ecaa7c28fd8a3029e9ca36dc74cf21da2373364dbf65a5e1099e7e5197"
+    },
+    {
+      "slug": "moscow-mule",
+      "article_url": "https://iba-world.com/iba-cocktail/moscow-mule/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-moscow-mule-6695cdc7d8cb2.webp",
+      "original_file": "originals/moscow-mule.webp",
+      "crayon_file": "crayon/moscow-mule-crayon.webp",
+      "original_sha256": "b71502d7ec76750ba23048f0f082a6e7db7960966cb85b897c1a1ae94a8ce333"
+    },
+    {
+      "slug": "pina-colada",
+      "article_url": "https://iba-world.com/iba-cocktail/pina-colada/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-pina-colada-6695cdcabbf00.webp",
+      "original_file": "originals/pina-colada.webp",
+      "crayon_file": "crayon/pina-colada-crayon.webp",
+      "original_sha256": "fcd865a520dadee481a2578a7aa1e9fe417fb608f35b87803b2d39f483c43fc5"
+    },
+    {
+      "slug": "pisco-sour",
+      "article_url": "https://iba-world.com/iba-cocktail/pisco-sour/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-pisco-sour-6695cdcaf1122.webp",
+      "original_file": "originals/pisco-sour.webp",
+      "crayon_file": "crayon/pisco-sour-crayon.webp",
+      "original_sha256": "3c4455b28ddfb85645a9a1b3247cf8ef4257d682be3ea4813f9794fa6a42abe0"
+    },
+    {
+      "slug": "rabo-de-galo",
+      "article_url": "https://iba-world.com/iba-cocktail/rabo-de-galo/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-rabo-de-galo-6695cdcdb2df1.webp",
+      "original_file": "originals/rabo-de-galo.webp",
+      "crayon_file": "crayon/rabo-de-galo-crayon.webp",
+      "original_sha256": "d6c80729c1b2d17f8e90ec73f0141bea1f0a307e417c53e8ea10518dc48f85cc"
+    },
+    {
+      "slug": "sea-breeze",
+      "article_url": "https://iba-world.com/iba-cocktail/sea-breeze/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-sea-breeze-6695cdce015a8.webp",
+      "original_file": "originals/sea-breeze.webp",
+      "crayon_file": "crayon/sea-breeze-crayon.webp",
+      "original_sha256": "83504802ddbe7f154b58fb2c3f73f453c124e142ab736a367b4fc0c81df8f674"
+    },
+    {
+      "slug": "sex-on-the-beach",
+      "article_url": "https://iba-world.com/iba-cocktail/sex-on-the-beach/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-sex-on-the-beach-6695cdd0aecf3.webp",
+      "original_file": "originals/sex-on-the-beach.webp",
+      "crayon_file": "crayon/sex-on-the-beach-crayon.webp",
+      "original_sha256": "6a020d91ca8ba028507135f3f82cccc4b9b888994ba6a7f5a89156ae78c87151"
+    },
+    {
+      "slug": "singapore-sling",
+      "article_url": "https://iba-world.com/iba-cocktail/singapore-sling/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-singapore-sling-6695cdd136426.webp",
+      "original_file": "originals/singapore-sling.webp",
+      "crayon_file": "crayon/singapore-sling-crayon.webp",
+      "original_sha256": "e0850132b0f9637fe5b7f1b7a603f7ee2a704171886b1f34f1136022d70e4593"
+    },
+    {
+      "slug": "tequila-sunrise",
+      "article_url": "https://iba-world.com/iba-cocktail/tequila-sunrise/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-tequila-sunrise-6695cdd3da10a.webp",
+      "original_file": "originals/tequila-sunrise.webp",
+      "crayon_file": "crayon/tequila-sunrise-crayon.webp",
+      "original_sha256": "6330fe0548da4894f3edeb2d93629e8988b39a047a7961b40c9cabb2d28e5bbc"
+    },
+    {
+      "slug": "vesper",
+      "article_url": "https://iba-world.com/iba-cocktail/vesper/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-vesper-6695cdd43284b.webp",
+      "original_file": "originals/vesper.webp",
+      "crayon_file": "crayon/vesper-crayon.webp",
+      "original_sha256": "a30b91825a491d987382d558e769abede034e03bf3a8db077dfdedb5b45ddfa1"
+    },
+    {
+      "slug": "zombie",
+      "article_url": "https://iba-world.com/iba-cocktail/zombie/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-contemporary-classics-zombie-6695cdd6cef05.webp",
+      "original_file": "originals/zombie.webp",
+      "crayon_file": "crayon/zombie-crayon.webp",
+      "original_sha256": "ef134ac8732c34a44306f94f5fafa8d7463e04e1be4e34c6f201fd8b1ad3076b"
+    },
+    {
+      "slug": "bees-knees",
+      "article_url": "https://iba-world.com/iba-cocktail/bees-knees/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-bees-knees-6695d397e26c1.webp",
+      "original_file": "originals/bees-knees.webp",
+      "crayon_file": "crayon/bees-knees-crayon.webp",
+      "original_sha256": "7f4c4ced0fbbc1cebdb92e196a8e3da30a45358444ce8f3b13f5c395fa288c51"
+    },
+    {
+      "slug": "bramble",
+      "article_url": "https://iba-world.com/iba-cocktail/bramble/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-bramble-6695d398036e1.webp",
+      "original_file": "originals/bramble.webp",
+      "crayon_file": "crayon/bramble-crayon.webp",
+      "original_sha256": "b42687ee5657775e6cccafa6a17945902304cb253a6ba248afa39149a73da91f"
+    },
+    {
+      "slug": "canchanchara",
+      "article_url": "https://iba-world.com/iba-cocktail/canchanchara/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-canchanchara-6695d39b24d7e.webp",
+      "original_file": "originals/canchanchara.webp",
+      "crayon_file": "crayon/canchanchara-crayon.webp",
+      "original_sha256": "24649c78ca9dcb3c9ed2b46ce093299d56e54558f73e015ca65793967e8deb76"
+    },
+    {
+      "slug": "chartreuse-swizzle",
+      "article_url": "https://iba-world.com/iba-cocktail/chartreuse-swizzle/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-chartreuse-swizzle-6695d39b326e0.webp",
+      "original_file": "originals/chartreuse-swizzle.webp",
+      "crayon_file": "crayon/chartreuse-swizzle-crayon.webp",
+      "original_sha256": "71a2c1f34117af62b8339d17afdf23993cae24831a40cf03df24a88fec08b17e"
+    },
+    {
+      "slug": "dark-n-stormy",
+      "article_url": "https://iba-world.com/iba-cocktail/dark-n-stormy/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-dark-n-stormy-6695d39e2bd94.webp",
+      "original_file": "originals/dark-n-stormy.webp",
+      "crayon_file": "crayon/dark-n-stormy-crayon.webp",
+      "original_sha256": "0b1bb0d37abf76cdb0b6845e2d83ddd3da3bbfdff8df39e22d604da33a9a746c"
+    },
+    {
+      "slug": "dons-special-daiquiri",
+      "article_url": "https://iba-world.com/iba-cocktail/dons-special-daiquiri/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-dons-special-daiquiri-6695d39e89fd7.webp",
+      "original_file": "originals/dons-special-daiquiri.webp",
+      "crayon_file": "crayon/dons-special-daiquiri-crayon.webp",
+      "original_sha256": "2ba1fe782a889e97840fd27e5dd1ea53b9e6786adafe03bc61dc00e142002006"
+    },
+    {
+      "slug": "espresso-martini",
+      "article_url": "https://iba-world.com/iba-cocktail/espresso-martini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-espresso-martini-6695d3a172fd3.webp",
+      "original_file": "originals/espresso-martini.webp",
+      "crayon_file": "crayon/espresso-martini-crayon.webp",
+      "original_sha256": "916e509cec58d0ce9f6004757c30a17656249d663d074a1cd2917ea3803891fc"
+    },
+    {
+      "slug": "french-martini",
+      "article_url": "https://iba-world.com/iba-cocktail/french-martini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-french-martini-6695d3a4acf5f.webp",
+      "original_file": "originals/french-martini.webp",
+      "crayon_file": "crayon/french-martini-crayon.webp",
+      "original_sha256": "e6d2c8e838c0210b95756cbc1a04fc413f1b9938964fe0a4a435a338b6faf846"
+    },
+    {
+      "slug": "gin-basil-smash",
+      "article_url": "https://iba-world.com/iba-cocktail/gin-basil-smash/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-gin-basil-smash-6695d3a4c0967.webp",
+      "original_file": "originals/gin-basil-smash.webp",
+      "crayon_file": "crayon/gin-basil-smash-crayon.webp",
+      "original_sha256": "b14f6e44d0dd042e3c0fabc04cea858edc6deea3632b592ee05fdd59c0831de2"
+    },
+    {
+      "slug": "grand-margarita",
+      "article_url": "https://iba-world.com/iba-cocktail/grand-margarita/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-tommys-margarita-6695d3c7171ef.webp",
+      "original_file": "originals/grand-margarita.webp",
+      "crayon_file": "crayon/grand-margarita-crayon.webp",
+      "original_sha256": "65e64150e17c80897b6c73afc4bffc2cca0dcbb381427bc1c3ad075d05cd9734"
+    },
+    {
+      "slug": "illegal",
+      "article_url": "https://iba-world.com/iba-cocktail/illegal/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-illegal-6695d3a7de51f.webp",
+      "original_file": "originals/illegal.webp",
+      "crayon_file": "crayon/illegal-crayon.webp",
+      "original_sha256": "503d2222ef07db9c9a9cfcd33207a558706e6f429b79b685ac948c16af8eed04"
+    },
+    {
+      "slug": "jungle-bird",
+      "article_url": "https://iba-world.com/iba-cocktail/jungle-bird/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-jungle-bird-6695d3ab45a87.webp",
+      "original_file": "originals/jungle-bird.webp",
+      "crayon_file": "crayon/jungle-bird-crayon.webp",
+      "original_sha256": "997e8d55450ad671829af3af862d1c031983d306072f179bfa37e15560bc6bc1"
+    },
+    {
+      "slug": "missionarys-downfall",
+      "article_url": "https://iba-world.com/iba-cocktail/missionarys-downfall/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-missionarys-downfall-6695d3ab4d4c5.webp",
+      "original_file": "originals/missionarys-downfall.webp",
+      "crayon_file": "crayon/missionarys-downfall-crayon.webp",
+      "original_sha256": "11e383573efdee5ffbdaf5d538fb4b8ee45fe0a867f4e7af1821e1e6048e095a"
+    },
+    {
+      "slug": "naked-and-famous",
+      "article_url": "https://iba-world.com/iba-cocktail/naked-and-famous/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-naked-and-famous-6695d3ae8e1dc.webp",
+      "original_file": "originals/naked-and-famous.webp",
+      "crayon_file": "crayon/naked-and-famous-crayon.webp",
+      "original_sha256": "a0a7d7aa415bc14c595a384ece6a5cbeff9b215af95c96fb20a6d86f0c45ebcb"
+    },
+    {
+      "slug": "new-york-sour",
+      "article_url": "https://iba-world.com/iba-cocktail/new-york-sour/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-new-york-sour-6695d3ae88cd2.webp",
+      "original_file": "originals/new-york-sour.webp",
+      "crayon_file": "crayon/new-york-sour-crayon.webp",
+      "original_sha256": "18a8678d08f68cafcece4f8614889859df5f0a7985e31f5fc29040b7c13d8d9a"
+    },
+    {
+      "slug": "old-cuban",
+      "article_url": "https://iba-world.com/iba-cocktail/old-cuban/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-old-cuban-6695d3b18c692.webp",
+      "original_file": "originals/old-cuban.webp",
+      "crayon_file": "crayon/old-cuban-crayon.webp",
+      "original_sha256": "996778ef641021ff0636010038c73424336e68bb6f8c8bc0dda364b73d8ec6d8"
+    },
+    {
+      "slug": "paloma",
+      "article_url": "https://iba-world.com/iba-cocktail/paloma/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-paloma-6695d3b19cda4.webp",
+      "original_file": "originals/paloma.webp",
+      "crayon_file": "crayon/paloma-crayon.webp",
+      "original_sha256": "6e1b15c69e2f42b0fa2f4f2e7ad50554ba846d493340edc6f4927c0921b74ef2"
+    },
+    {
+      "slug": "paper-plane",
+      "article_url": "https://iba-world.com/iba-cocktail/paper-plane/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-paper-plane-6695d3b4745eb.webp",
+      "original_file": "originals/paper-plane.webp",
+      "crayon_file": "crayon/paper-plane-crayon.webp",
+      "original_sha256": "ebc4f7c9b6ddd6ceb60091d9f2209e64d5ee8d2e7ce98dca3104ce79ce70fe43"
+    },
+    {
+      "slug": "penicillin",
+      "article_url": "https://iba-world.com/iba-cocktail/penicillin/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-penicillin-6695d3b47b79f.webp",
+      "original_file": "originals/penicillin.webp",
+      "crayon_file": "crayon/penicillin-crayon.webp",
+      "original_sha256": "7df22a4743f8922fe1522d94d59dd3dd5c2f943a6b9f68f65a074a96aa043987"
+    },
+    {
+      "slug": "pisco-punch",
+      "article_url": "https://iba-world.com/iba-cocktail/pisco-punch/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-pisco-punch-6695d3b74b9f5.webp",
+      "original_file": "originals/pisco-punch.webp",
+      "crayon_file": "crayon/pisco-punch-crayon.webp",
+      "original_sha256": "ce7698bb3667cff260d56ce1d37ae9555bdfd5e30bccdc6c6b4d0c1f96dff512"
+    },
+    {
+      "slug": "porn-star-martini",
+      "article_url": "https://iba-world.com/iba-cocktail/porn-star-martini/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-porn-star-martini-6695d3b771b97.webp",
+      "original_file": "originals/porn-star-martini.webp",
+      "crayon_file": "crayon/porn-star-martini-crayon.webp",
+      "original_sha256": "a1009f14e3cf840a1768c4a9a7570465047e3e504625cc749d0ec88aa5dcb7e9"
+    },
+    {
+      "slug": "russian-spring-punch",
+      "article_url": "https://iba-world.com/iba-cocktail/russian-spring-punch/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-russian-spring-punch-6695d3ba314f1.webp",
+      "original_file": "originals/russian-spring-punch.webp",
+      "crayon_file": "crayon/russian-spring-punch-crayon.webp",
+      "original_sha256": "0f5d59216b1788032e589faa7f47b734f2a2836d11df32302994c8d8675d8c1e"
+    },
+    {
+      "slug": "sherry-cobbler",
+      "article_url": "https://iba-world.com/iba-cocktail/sherry-cobbler/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-sherry-cobbler-6695d3ba8bdb7.webp",
+      "original_file": "originals/sherry-cobbler.webp",
+      "crayon_file": "crayon/sherry-cobbler-crayon.webp",
+      "original_sha256": "3b5df727f0d559f6c3666b4ca32997dc4e0488840314fa4794c1d857be990682"
+    },
+    {
+      "slug": "south-side",
+      "article_url": "https://iba-world.com/iba-cocktail/south-side/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-south-side-6695d3bdcc9fe.webp",
+      "original_file": "originals/south-side.webp",
+      "crayon_file": "crayon/south-side-crayon.webp",
+      "original_sha256": "3d82f11ee28d42e99c4a4240441b3bcfe2e5afd5448906a881cbe70de9fc2e0f"
+    },
+    {
+      "slug": "spicy-fifty",
+      "article_url": "https://iba-world.com/iba-cocktail/spicy-fifty/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-spicy-fifty-6695d3bdd14b1.webp",
+      "original_file": "originals/spicy-fifty.webp",
+      "crayon_file": "crayon/spicy-fifty-crayon.webp",
+      "original_sha256": "82d860db200f0055102f31300d9e5ab8f7bc7b9423a1c2e4f0c9160bb3c41b04"
+    },
+    {
+      "slug": "spritz",
+      "article_url": "https://iba-world.com/iba-cocktail/spritz/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-spritz-6695d3c0f113f.webp",
+      "original_file": "originals/spritz.webp",
+      "crayon_file": "crayon/spritz-crayon.webp",
+      "original_sha256": "c47761f6212a649e6effe6d6fc36e4ed318e828e56c6ede86b13d35ec0d74af4"
+    },
+    {
+      "slug": "suffering-bastard",
+      "article_url": "https://iba-world.com/iba-cocktail/suffering-bastard/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-suffering-bastard-6695d3c1081c4.webp",
+      "original_file": "originals/suffering-bastard.webp",
+      "crayon_file": "crayon/suffering-bastard-crayon.webp",
+      "original_sha256": "195a9e780b31f30c4cfa947433f60cc74ff985b151ce4bd03bc6c66d9ae8463d"
+    },
+    {
+      "slug": "three-dots-and-a-dash",
+      "article_url": "https://iba-world.com/iba-cocktail/three-dots-and-a-dash/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-three-dots-and-a-dash-6695d3c3e2d24.webp",
+      "original_file": "originals/three-dots-and-a-dash.webp",
+      "crayon_file": "crayon/three-dots-and-a-dash-crayon.webp",
+      "original_sha256": "09c9a767faa49c0b04c07c609f62cdf3fd1141f1dfe75faa0ecbcaa22c565a44"
+    },
+    {
+      "slug": "tipperary",
+      "article_url": "https://iba-world.com/iba-cocktail/tipperary/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-tipperary-6695d3c453fd3.webp",
+      "original_file": "originals/tipperary.webp",
+      "crayon_file": "crayon/tipperary-crayon.webp",
+      "original_sha256": "92db3098cea44a3c41d901270364dbd63729ff13b0a536ce5634622dacfc5d77"
+    },
+    {
+      "slug": "tommys-margarita",
+      "article_url": "https://iba-world.com/iba-cocktail/tommys-margarita/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-tommys-margarita-6695d3c7171ef.webp",
+      "original_file": "originals/tommys-margarita.webp",
+      "crayon_file": "crayon/tommys-margarita-crayon.webp",
+      "original_sha256": "65e64150e17c80897b6c73afc4bffc2cca0dcbb381427bc1c3ad075d05cd9734"
+    },
+    {
+      "slug": "trinidad-sour",
+      "article_url": "https://iba-world.com/iba-cocktail/trinidad-sour/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-trinidad-sour-6695d3c794a43.webp",
+      "original_file": "originals/trinidad-sour.webp",
+      "crayon_file": "crayon/trinidad-sour-crayon.webp",
+      "original_sha256": "67012a776e8cb902ab565d2c9584a2d67d11d0b75f4bfa617e9e1b55dd7ceb8c"
+    },
+    {
+      "slug": "ve-n-to",
+      "article_url": "https://iba-world.com/iba-cocktail/ve-n-to/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-vento-6695d3ca45bc2.webp",
+      "original_file": "originals/ve-n-to.webp",
+      "crayon_file": "crayon/ve-n-to-crayon.webp",
+      "original_sha256": "168c32d4e0c1613bb37cd653daefa6b3e427804eddd2ec4fffa6f95e7c7ffcb4"
+    },
+    {
+      "slug": "iba-tiki",
+      "article_url": "https://iba-world.com/iba-cocktail/iba-tiki/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-iba-tiki-6695d3a7e33fd.webp",
+      "original_file": "originals/iba-tiki.webp",
+      "crayon_file": "crayon/iba-tiki-crayon.webp",
+      "original_sha256": "356875b9e360ec1a28dee6381429d935c849d80ef0019ad0708c1926b219876e"
+    },
+    {
+      "slug": "fernandito",
+      "article_url": "https://iba-world.com/iba-cocktail/fernandito/",
+      "original_url": "https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-new-era-fernandito-6695d3a1a3586.webp",
+      "original_file": "originals/fernandito.webp",
+      "crayon_file": "crayon/fernandito-crayon.webp",
+      "original_sha256": "20564854e7a5cda1c1bd56587b5da101f41cc936eeda2429f93c69717fd03a1b"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "pages": ["pages/home/index", "pages/bar/index", "pages/detail/index", "pages/collection/index"],
+  "window": {
+    "navigationBarTitleText": "猫咪酒馆",
+    "navigationBarBackgroundColor": "#FFF6EC",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFF6EC",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#938376",
+    "selectedColor": "#B96532",
+    "backgroundColor": "#FFFBF5",
+    "borderStyle": "white",
+    "list": [
+      {"pagePath": "pages/home/index", "text": "调酒配方", "iconPath": "assets/tabs/home.png", "selectedIconPath": "assets/tabs/home-active.png"},
+      {"pagePath": "pages/bar/index", "text": "我的酒吧", "iconPath": "assets/tabs/bar.png", "selectedIconPath": "assets/tabs/bar-active.png"}
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

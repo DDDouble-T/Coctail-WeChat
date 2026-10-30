@@ -1,0 +1,50 @@
+{
+  "description": "猫咪酒馆 Cat Tavern · TS + Sass",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "appid": "wx52ea52573e4a7513",
+  "projectname": "cat-tavern",
+  "libVersion": "2.31.0",
+  "setting": {
+    "es6": true,
+    "minified": true,
+    "postcss": true,
+    "enhance": true,
+    "useCompilerPlugins": [
+      "typescript",
+      "sass"
+    ],
+    "packNpmManually": false,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "tsconfig.json",
+        "type": "file"
+      },
+      {
+        "value": "typings",
+        "type": "folder"
+      }
+    ],
+    "include": []
+  },
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
+}
