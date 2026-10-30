@@ -61,19 +61,29 @@ npx -y --package @cloudbase/cli@3.8.10 tcb api tcb DescribeWxCloudBaseRunPipelin
 
 首次仓库发布使用 `tcbr / UpdateCloudRunServer`（版本 `2022-02-17`）：`DeployInfo.DeployType=repository`，`RepoInfo={Source:"github",Repo:"DDDouble-T/Coctail-WeChat",Branch:"main"}`，`ReleaseType=FULL`，`Business=tcb`。仓库字段使用完整名称，不填 HTTPS/SSH URL。推送流水线的 `CodeUrl` 也使用该完整名称。流水线创建接口会检查远端分支上确实存在 Dockerfile，必须先推送构建文件再保存配置。
 
-此处记录的是已保存并读回的配置；实际自动触发结果还需以推送后产生的流水线任务与发布记录为准。
+实际推送验收：推送提交 `4517666` 后，平台于 2026-10-30 20:28:09（上海时间）自动产生任务 **1241549**，`TriggerType=Push`，最终 `Status=2002`（成功），耗时 138 秒。对应版本 **paw-inn-004** 已承接 100% 流量，线上健康、就绪、102 款酒谱、162 种原料、详情和后端图片检查全部通过。任务 API 与本次构建日志没有提交 SHA，记录的是已观察到的推送时间、触发方式和发布版本。
+
+查询真实触发记录：
+
+```sh
+npx -y --package @cloudbase/cli@3.8.10 tcb api tcb DescribeWxCloudBaseRunPipelineTasks \
+  --env-id paw-inn-d9gixxkg3f894407e --region ap-shanghai \
+  --body '{"EnvId":"paw-inn-d9gixxkg3f894407e","ServiceId":"paw-inn","PipelineIds":[154466],"PageSize":20,"PageNum":1}' --json
+```
+
+状态 `2000` 为排队、`2001` 为运行中、`2002` 为成功、`2003` 为失败、`2004` 为异常、`2005` 为已终止。仅保存配置或出现运行中任务均不能作为发布成功的依据。
 
 ## 仓库验证工作流
 
 `.github/workflows/backend.yml` 会在 PR、main 推送及手动触发时运行类型检查、43 项行为与数据测试、真实 Docker 构建和容器接口/图片检查。此工作流只验证，不保存云密钥，也不代替云托管原生发布。原生推送流水线与 GitHub Actions 各自触发；为确保发布前验证，建议通过 PR 合并已通过检查的修改，或关闭推送发布并在检查通过后手动发布。
 
-提交 `c9053bd48c6cfebbde689f29217304fc0149f24e` 的[后端验证运行](https://github.com/DDDouble-T/Coctail-WeChat/actions/runs/41053958094)已完成，结论为 `success`。
+根目录 Dockerfile 的修复提交 `8ce6d81c7950e4026e3e924c06aa19271b8724d0` 的[后端验证运行](https://github.com/DDDouble-T/Coctail-WeChat/actions/runs/41055342101)已完成，结论为 `success`；包含真实 Docker 构建和容器接口/图片检查。
 
 ## 验收
 
 1. 控制台显示正确仓库、`main`、根构建上下文、`Dockerfile` 和端口 `80`。
-2. 首次流水线构建成功，构建日志对应预期 Git commit，GitHub 仓库存在平台建立的 webhook。
+2. 首次仓库发布成功，平台已建立推送触发配置；若控制台或日志提供 Git commit，应核对预期提交。
 3. 后端 `/healthz`、`/readyz` 成功，`/api/catalog` 返回 102 款 IBA 酒谱，处理图与原图通过后端地址可取。
-4. 向绑定分支推送一次实际修改后，控制台自动产生新发布记录且 commit 一致，证明触发器生效。
+4. 向绑定分支推送一次实际修改后，平台自动产生 `Push` 任务并最终成功，版本切流后接口检查通过，证明触发器生效；记录可获得的提交、时间和版本信息。
 
 官方依据：[微信云托管服务设置与流水线](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloudrun/src/guide/service/pipeline.html)、[微信云托管部署发布](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloudrun/src/guide/service/online.html)、[CloudBase 云托管概述与持续交付](https://docs.cloudbase.net/run/introduction)。
