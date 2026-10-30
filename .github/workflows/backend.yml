@@ -9,6 +9,7 @@ on:
       - 'scripts/**'
       - 'tests/**'
       - 'package*.json'
+      - 'Dockerfile'
       - '.dockerignore'
       - '.github/workflows/backend.yml'
   push:
@@ -20,6 +21,7 @@ on:
       - 'scripts/**'
       - 'tests/**'
       - 'package*.json'
+      - 'Dockerfile'
       - '.dockerignore'
       - '.github/workflows/backend.yml'
   workflow_dispatch:
@@ -49,7 +51,7 @@ jobs:
           npm run db:export
           git diff --exit-code -- server/tcb
       - name: 构建真实部署镜像
-        run: docker build -f server/Dockerfile -t paw-inn-api:ci .
+        run: docker build -t paw-inn-api:ci .
       - name: 验证容器接口与图片
         run: |
           docker run -d --name paw-inn-ci -e NODE_ENV=development -e PORT=8080 -p 8080:8080 paw-inn-api:ci

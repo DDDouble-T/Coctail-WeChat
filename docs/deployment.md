@@ -51,12 +51,12 @@ npm run db:export
 npm run deploy:package
 ```
 
-输出 `artifacts/cat-tavern-tcb-deploy.tar.gz`。解压后的目录是构建上下文，顶层 `Dockerfile` 与仓库的 `server/Dockerfile` 相同。包中包含全量目录、TCB 导入文件、102 张蜡笔图和 102 张原图，不包含本机密钥。微信云托管控制台上传该目录并使用顶层 Dockerfile，监听端口设为 `80`，注入上一节环境变量。
+输出 `artifacts/cat-tavern-tcb-deploy.tar.gz`。解压后的目录是构建上下文，使用与仓库相同的根目录 `Dockerfile`。包中包含全量目录、TCB 导入文件、102 张蜡笔图和 102 张原图，不包含本机密钥。微信云托管控制台上传该目录并使用顶层 Dockerfile，监听端口设为 `80`，注入上一节环境变量。
 
 若直接从仓库构建，使用仓库根目录作为上下文：
 
 ```sh
-docker build -f server/Dockerfile -t cat-tavern-api .
+docker build -t cat-tavern-api .
 docker run --rm --env-file .env.local -e NODE_ENV=production -e PORT=80 -p 8080:80 cat-tavern-api
 ```
 

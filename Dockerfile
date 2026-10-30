@@ -1,3 +1,4 @@
+# 云托管流水线要求 Dockerfile 为文件名；构建上下文使用仓库根目录以包含共享模型和图片。
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
