@@ -12,7 +12,7 @@ const imagePath = snapshot.cocktails[0].image_url;
 const cacheKey = 'cat-tavern:v2:catalog:paw-inn-d9gixxkg3f894407e:paw-inn';
 
 // 每个场景独立装载小程序模块，模拟应用重启及微信 API，而不共享服务单例。
-function client(wx: WxMock, page?: (options: any) => void) {
+function client(wx: WxMock, page?: (options: any) => void, logger: Pick<Console, 'error'> = { error() {} }) {
   const modules = new Map<string, { exports: any }>();
   function load(relative: string, directory = root): any {
     const filename = path.resolve(directory, relative.endsWith('.ts') ? relative : `${relative}.ts`);
@@ -23,8 +23,8 @@ function client(wx: WxMock, page?: (options: any) => void) {
     const compiled = ts.transpileModule(readFileSync(filename, 'utf8'), {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
     }).outputText;
-    const execute = new Function('require', 'module', 'exports', 'wx', 'Page', compiled);
-    execute((name: string) => load(name, path.dirname(filename)), module, module.exports, wx, page);
+    const execute = new Function('require', 'module', 'exports', 'wx', 'Page', 'console', compiled);
+    execute((name: string) => load(name, path.dirname(filename)), module, module.exports, wx, page, logger);
     return module.exports;
   }
   return (file: string) => load(file);
@@ -87,6 +87,73 @@ test('损坏缓存、非后端图片和持久化失败均有安全的加载行�
   wx.cloud = undefined;
   assert.equal(await service.refreshCatalog(), false);
 });
+
+test('接口失败保留微信错误码，并区分 HTTP 错误和响应校验失败，不记录完整响应或凭证', async () => {
+  const { wx } = catalogMock(snapshot);
+  const logs: unknown[][] = [];
+  const service = client(wx, undefined, { error: (...args) => logs.push(args) })('miniprogram/services/catalog');
+  wx.cloud.callContainer = async () => { throw { errCode: -501000, errMsg: 'invalid env', authorization: 'private-value' }; };
+  assert.equal(await service.refreshCatalog(), false);
+  assert.equal((logs[0][1] as any).errCode, -501000);
+  assert.equal((logs[0][1] as any).errMsg, 'invalid env');
+  wx.cloud.callContainer = async () => ({ statusCode: 403, data: { private: 'private-value' } });
+  assert.equal(await service.refreshCatalog(), false);
+  assert.equal((logs[1][1] as any).statusCode, 403);
+  wx.cloud.callContainer = async () => ({ statusCode: 200, data: 'unexpected text' });
+  assert.equal(await service.refreshCatalog(), false);
+  assert.equal((logs[2][1] as any).dataType, 'string');
+  assert.doesNotMatch(JSON.stringify(logs), /private-value/);
+  assert.deepEqual(service.getCatalog(), snapshot);
+});
+
+for (const name of ['home', 'bar', 'collection']) {
+  test(`${name} 页首次 onShow 在目录返回前安全渲染，网络成功后恢复酒谱和原有材料`, async () => {
+    const { wx, storage } = catalogMock();
+    storage.set('cat-tavern:v1:bar', ['Gin', '不存在的材料']);
+    storage.set('cat-tavern:v1:favorites', [snapshot.cocktails[0].id]);
+    // 旧版本的缓存结构不能作为尚未获取的远端目录使用。
+    storage.set('cat-tavern:v1:catalog', { cocktails: snapshot.cocktails.slice(0, 39) });
+    let resolve: (value: unknown) => void = () => {};
+    wx.cloud.callContainer = () => new Promise((done) => { resolve = done; });
+    let page: any;
+    const load = client(wx, (options) => {
+      page = { ...options, data: structuredClone(options.data), setData(update: unknown) { Object.assign(this.data, update); } };
+    });
+    load(`miniprogram/pages/${name}/index`);
+    assert.doesNotThrow(() => page.onShow());
+    assert.equal(page.data.loading, true);
+    assert.equal(page.data.total, 0);
+    assert.deepEqual(page.data.cards, []);
+    resolve({ statusCode: 200, data: { data: snapshot } });
+    await new Promise((done) => setImmediate(done));
+    assert.equal(page.data.loading, false);
+    assert.equal(page.data.total, snapshot.cocktails.length);
+    assert.equal(page.data.notice, '');
+    assert.ok(page.data.cards.length > 0);
+    assert.deepEqual(storage.get('cat-tavern:v1:bar'), ['Gin', '不存在的材料']);
+    if (name === 'bar') assert.deepEqual(page.data.selected, [{ id: 'gin', name: '金酒' }]);
+    if (name === 'home') assert.ok(page.data.daily.id);
+    if (name === 'collection') assert.equal(page.data.cards[0].id, snapshot.cocktails[0].id);
+  });
+
+  test(`${name} 页在目录缺失且接口失败时显示重试，重试成功后可正常使用`, async () => {
+    const { wx } = catalogMock({ version: 'broken', cocktails: [] });
+    wx.cloud.callContainer = async () => { throw new Error('offline'); };
+    let page: any;
+    client(wx, (options) => {
+      page = { ...options, data: structuredClone(options.data), setData(update: unknown) { Object.assign(this.data, update); } };
+    })(`miniprogram/pages/${name}/index`);
+    assert.doesNotThrow(() => page.onShow());
+    await new Promise((done) => setImmediate(done));
+    assert.equal(page.data.loading, false);
+    assert.equal(page.data.total, 0);
+    assert.match(page.data.notice, /重试/);
+    wx.cloud.callContainer = async () => ({ statusCode: 200, data: { data: snapshot } });
+    await page.sync();
+    assert.equal(page.data.total, snapshot.cocktails.length);
+    assert.equal(page.data.notice, '');
+  });
+}
 
 test('首次直接打开详情时等待网络结果，成功后重绘酒谱，离线失败可重试', async () => {
   const { wx } = catalogMock();

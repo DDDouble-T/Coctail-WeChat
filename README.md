@@ -17,6 +17,8 @@ npm run server:dev
 
 微信开发者工具使用 `project.config.json` 的正式 AppID。若工具自身接口出现 `INVALID_TOKEN`，退出工具账号并扫码重新登录。
 
+从内置酒单版本更新到后端目录后，如果启动时报 `normalizeIngredientIds` 的 `forEach of undefined`，先在开发者工具顶部“清缓存”中选择“清除编译缓存”，再点击“编译”。旧目录/匹配模块仍运行、而原料元数据已更新时，可复现该错误；当前源码会用空目录渲染并等待后端返回。若仍使用旧模块，关闭该项目的编译热重载，再关闭项目窗口并从当前仓库根目录重新打开；内存中的文件缓存也需要重新建立。只清编译缓存即可，酒柜和收藏无需清除。CLI 对应命令是 `cli cache --project <项目根目录> --clean compile`，要求开发者工具的服务端口可连接。
+
 ## TCB 初始化与部署
 
 继续使用微信云托管 + TCB **文档数据库**，不需要 SQL 或 MySQL。先创建 `ingredients` 和 `cocktails` 两个集合，客户端权限设置为仅管理端可读写。

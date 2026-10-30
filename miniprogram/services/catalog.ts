@@ -31,18 +31,34 @@ export function refreshCatalog(): Promise<boolean> {
 }
 
 async function fetchCatalog(): Promise<boolean> {
-  if (!cloudConfig.envId || !wx.cloud || !wx.cloud.callContainer) return false;
+  if (!cloudConfig.envId || !wx.cloud || !wx.cloud.callContainer) {
+    console.error('[catalog] 云托管调用不可用', { envId: cloudConfig.envId, serviceName: cloudConfig.serviceName });
+    return false;
+  }
   try {
     const response = await wx.cloud.callContainer({
       config: { env: cloudConfig.envId }, path: '/api/catalog', method: 'GET', timeout: 20_000,
       header: { 'X-WX-SERVICE': cloudConfig.serviceName },
     });
     const body: unknown = response.data;
-    if (response.statusCode !== 200 || typeof body !== 'object' || !body || !('data' in body) || !isCatalog(body.data)) return false;
+    if (response.statusCode !== 200) {
+      console.error('[catalog] 云托管返回异常状态', { statusCode: response.statusCode });
+      return false;
+    }
+    if (typeof body !== 'object' || !body || !('data' in body) || !isCatalog(body.data)) {
+      console.error('[catalog] 酒单响应校验失败', { dataType: typeof body });
+      return false;
+    }
     catalog = body.data;
     try { wx.setStorageSync(cacheKey, catalog); } catch { /* 存储空间不足不影响本次会话。 */ }
     return true;
-  } catch {
+  } catch (error) {
+    // 只记录定位网关错误所需的字段，避免将完整响应或请求凭证写入控制台。
+    const detail = error as { errCode?: unknown; errMsg?: unknown; message?: unknown } | null;
+    console.error('[catalog] 云托管调用失败', {
+      envId: cloudConfig.envId, serviceName: cloudConfig.serviceName,
+      errCode: detail?.errCode, errMsg: detail?.errMsg, message: detail?.message,
+    });
     return false;
   }
 }
