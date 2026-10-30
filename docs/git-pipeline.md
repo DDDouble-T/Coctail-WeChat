@@ -47,6 +47,22 @@ npx -y --package @cloudbase/cli@3.8.10 tcb api tcb DescribeCloudBaseCodeBranch \
 
 API 名来自已安装 CloudBase CLI 3.8.10；当前云端分支查询要求 `RepoName` 为含 `FullName`、`Name` 的对象，直接套用旧 CLI 的字符串参数会报类型错误。仓库对象应使用仓库列表返回的规范值。`cloudrun deploy --source` 仅发布本地代码，不等于已绑定原生推送流水线。
 
+## 已绑定的云端配置
+
+2026-10-30，服务已完成首次 `repository` 发布（`paw-inn-003`，任务 `2502204`）。随后通过官方控制台相同的 `CreateWxCloudBaseRunPipeline` 接口建立原生流水线 **154466**，并读回确认：`CodeSource=github`、`CodeUrl=DDDouble-T/Coctail-WeChat`、`CodeBranch=main`、`CodePath=""`、`Dockerfile=Dockerfile`、`Port=80`、`EnablePushTrigger=true`。
+
+查询现有配置：
+
+```sh
+npx -y --package @cloudbase/cli@3.8.10 tcb api tcb DescribeWxCloudBaseRunPipelines \
+  --env-id paw-inn-d9gixxkg3f894407e --region ap-shanghai \
+  --body '{"EnvId":"paw-inn-d9gixxkg3f894407e","ServiceId":"paw-inn"}' --json
+```
+
+首次仓库发布使用 `tcbr / UpdateCloudRunServer`（版本 `2022-02-17`）：`DeployInfo.DeployType=repository`，`RepoInfo={Source:"github",Repo:"DDDouble-T/Coctail-WeChat",Branch:"main"}`，`ReleaseType=FULL`，`Business=tcb`。仓库字段使用完整名称，不填 HTTPS/SSH URL。推送流水线的 `CodeUrl` 也使用该完整名称。流水线创建接口会检查远端分支上确实存在 Dockerfile，必须先推送构建文件再保存配置。
+
+此处记录的是已保存并读回的配置；实际自动触发结果还需以推送后产生的流水线任务与发布记录为准。
+
 ## 仓库验证工作流
 
 `.github/workflows/backend.yml` 会在 PR、main 推送及手动触发时运行类型检查、43 项行为与数据测试、真实 Docker 构建和容器接口/图片检查。此工作流只验证，不保存云密钥，也不代替云托管原生发布。原生推送流水线与 GitHub Actions 各自触发；为确保发布前验证，建议通过 PR 合并已通过检查的修改，或关闭推送发布并在检查通过后手动发布。
