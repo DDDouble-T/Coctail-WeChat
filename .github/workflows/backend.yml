@@ -1,0 +1,61 @@
+name: 后端验证
+
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+      - 'miniprogram/**'
+      - 'data/iba-cocktails/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'package*.json'
+      - '.dockerignore'
+      - '.github/workflows/backend.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'server/**'
+      - 'miniprogram/**'
+      - 'data/iba-cocktails/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'package*.json'
+      - '.dockerignore'
+      - '.github/workflows/backend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: 安装依赖并验证
+        run: |
+          npm ci
+          npm run check
+          npm run server:build
+          npm run db:export
+          git diff --exit-code -- server/tcb
+      - name: 构建真实部署镜像
+        run: docker build -f server/Dockerfile -t paw-inn-api:ci .
+      - name: 验证容器接口与图片
+        run: |
+          docker run -d --name paw-inn-ci -e NODE_ENV=development -e PORT=8080 -p 8080:8080 paw-inn-api:ci
+          EXPECTED_CATALOG_SOURCE=builtin node scripts/verify-backend.mjs
+      - name: 输出容器日志并清理
+        if: always()
+        run: |
+          docker logs paw-inn-ci || true
+          docker rm -f paw-inn-ci || true

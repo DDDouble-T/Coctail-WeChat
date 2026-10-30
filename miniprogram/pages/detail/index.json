@@ -1,1 +1,1 @@
-{"navigationBarTitleText":"猫咪的配方", "usingComponents":{}}
+{"navigationBarTitleText": "猫咪的配方", "usingComponents": {"cocktail-image": "/components/cocktail-image/index"}, "enablePullDownRefresh": true}

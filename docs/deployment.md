@@ -1,103 +1,94 @@
-# 云托管 + TCB 部署
+# 微信云托管 + TCB 部署
 
-服务采用 Node.js 22 + Express，酒谱与原料存于同一 CloudBase（TCB）环境的文档数据库。小程序通过 `wx.cloud.callContainer` 调用云托管，不直接访问数据库。本期接口为公开酒谱查询，酒柜、收藏、历史记录在小程序本机保存。
+后端采用 Node.js 22 + Express + CloudBase Node SDK。酒谱和原料存于 TCB 文档数据库，小程序通过 `wx.cloud.callContainer` 获取 API 与图片。酒柜、收藏保存在小程序本机。
 
-## 1. 本地验证
+## 1. 准备环境
 
-在仓库根目录执行：
+当前小程序配置的云环境为 `paw-inn-d9gixxkg3f894407e`，服务名为 `paw-inn`。发布前应在微信云托管控制台确认这两项属于目标小程序，并确认环境地域。AppID 不能代替环境 ID。
+
+在 TCB 创建 `ingredients`、`cocktails` 两个集合，使用稳定业务 ID 作为文档 `_id`。集合客户端权限设为仅管理端可读写；自定义规则为 `{"read":false,"write":false}`。普通 CloudBase 容器需要显式配置本环境的服务端 API Key（`CLOUDBASE_APIKEY`）；当前 SDK 不会自动获得容器数据库身份。服务器将该值显式传入 SDK 的 `accessKey`。不要使用客户端 `publish_key`，也不要把管理密钥交给小程序。初始化可使用已登录的 CLI，避免另配全账号密钥。
+
+| 变量 | 配置 |
+| --- | --- |
+| `CLOUD_BASE_ENV_ID` | `paw-inn-d9gixxkg3f894407e`，按实际环境确认 |
+| `TENCENTCLOUD_REGION` | `ap-shanghai`，以实际环境为准 |
+| `CLOUDBASE_APIKEY` | 本环境的服务端 `api_key`，在平台环境变量中注入 |
+| `NODE_ENV` | `production` |
+| `PORT` | `80` |
+| `TENCENTCLOUD_SECRETID` / `TENCENTCLOUD_SECRETKEY` | 本机初始化时可注入；云托管优先使用运行身份 |
+| `TENCENTCLOUD_SESSIONTOKEN` | 使用临时凭证时同时配置 |
+| `TRUST_PROXY_HOPS` | 默认 `0`；确认平台清理伪造转发头且仅一层可信代理时设 `1` |
+
+当前部署使用环境级服务端密钥 `paw-inn-backend`，有效期至 **2027-10-30 20:09（上海时间）**，到期前应在平台轮换。它只保存在平台及本机忽略文件，流水线更新服务时须保留 `CLOUDBASE_APIKEY`；不要用不含该值的完整变量 JSON 覆盖线上配置。
+
+真实凭证只放本机忽略文件 `.env.local` 或平台密钥配置，不放小程序、Git、构建参数、镜像或部署包。
+
+## 2. 初始化 TCB 数据
+
+TCB 文档库不执行 SQL。两种初始化方式任选一种：
+
+**控制台导入**：运行 `npm run db:export`，先将 `server/tcb/ingredients.jsonl` 导入 `ingredients`，再将 `server/tcb/cocktails.jsonl` 导入 `cocktails`。选择 JSON 按行导入；文件已包含稳定 `_id`，更新已有数据时选择同 ID 覆盖，避免随机文档 ID 造成重复。不要清空集合，数据库里自建的其他文档可以保留。
+
+**服务端脚本**：复制 `server/.env.example` 为根目录 `.env.local`，填入目标环境和受控凭证，然后执行：
 
 ```sh
 npm ci
-npm test
-npm run typecheck
-npm run server:build
-npm run server:dev
-```
-
-默认监听 `http://localhost:8080`。没有配置 `CLOUD_BASE_ENV_ID` 时使用完整内置酒谱，可先开发小程序界面；响应头 `X-Catalog-Source: builtin` 可识别该模式。配置环境 ID 后，读取 TCB 失败会返回 `503`，不会假装已从远端读取成功。生产模式缺少环境 ID 会直接拒绝启动。
-
-`server/.env.example` 是配置说明，命令不会自动加载它。需要本地连接 TCB 时，可复制为未追踪的 `.env.local`，填写实际值后执行：
-
-```sh
-node --env-file=.env.local --import tsx server/src/index.ts
-```
-
-Node.js 20.6+ 支持 `--env-file`；项目推荐 Node.js 22。真实密钥只能放本机未追踪文件或平台密钥管理，不放小程序、仓库、Docker 构建参数或镜像。
-
-## 2. 创建环境和数据库
-
-1. 用实际小程序 AppID 开通微信云托管，并创建或关联 TCB 环境。记下**环境 ID**、地域和**云托管服务名**；这三项不能用 AppID 代替。
-2. 在该环境创建 `ingredients`、`cocktails` 两个文档集合。采用空白模板即可，文档 ID 使用业务 ID；没有额外复合索引要求，服务按 `_id` 分页读取完整集合。
-3. 两个集合的客户端权限设置为「仅管理端可读写」；如使用自定义规则，设置 `{"read":false,"write":false}`。服务器通过具备权限的运行身份访问，禁止为方便调试给小程序开放数据库写权限。
-4. 为云托管运行身份授予目标环境所需的 TCB 数据库读取权限。推荐将初始化写权限限定给运维或单独的初始化身份。优先使用平台提供的临时身份；若实际环境不支持自动获取，则通过平台密钥配置注入所需凭证。
-
-服务配置：
-
-| 变量 | 用途 |
-| --- | --- |
-| `CLOUD_BASE_ENV_ID` | 必填，实际 TCB 环境 ID |
-| `TENCENTCLOUD_REGION` | TCB 环境所在地域，如 `ap-shanghai` |
-| `PORT` | 云托管设 `80`；本地默认 `8080` |
-| `NODE_ENV` | 云托管设 `production` |
-| `TENCENTCLOUD_SECRETID` / `TENCENTCLOUD_SECRETKEY` | 仅外部运行或平台确需时注入；成对配置 |
-| `TENCENTCLOUD_SESSIONTOKEN` | 临时凭证时同时配置；不要把临时凭证永久写入配置 |
-| `TRUST_PROXY_HOPS` | 默认 `0`；确认平台清理伪造转发头、且请求经过一个可信网关后可设 `1` |
-
-默认每个连接 IP 对 `/api` 限制 120 次/分钟；健康探针不受影响。信任代理层数必须与实际网络一致，否则可能共享额度或允许伪造 IP。若多实例扩容，此额度按实例生效，需要全局额度时在云托管网关设置。
-
-## 3. 显式初始化数据
-
-发布小程序前先运行 `npm run iba:images`。脚本从 IBA 官方 sitemap 逐页提取鸡尾酒主图，保留原图并生成确定性的蜡笔效果图；现有目录的图写入 `miniprogram/assets/cocktails/`，全量原图、处理图和来源清单保存在 `data/iba-cocktails/`。酒谱文档的 `image_url` 指向小程序包内图片，`image_original_url` 和 `source_url` 保留官方来源。图片二进制不写入文档数据库，避免大字段和重复存储。
-
-先确认环境 ID 指向预期环境，然后用具备写权限的本机或受控作业注入凭证：
-
-```sh
 node --env-file=.env.local --import tsx server/src/seed.ts
 ```
 
-也可在已注入环境变量的受控终端执行 `npm run db:seed`。脚本校验内置数据后，对两个集合按稳定 `id` 执行 `doc(id).set(record)`；可重复执行，不产生重复记录，也不会删除数据库里额外新增的酒谱。它会覆盖同 ID 的业务字段，手工编辑过数据时需先确认是否需要保留。中途失败可修复权限/网络后重跑。
+脚本在写入前校验全量快照，按稳定 ID 执行 `doc(id).set(record)`；反复执行不会新增重复记录，不删除后台自建记录，会覆盖相同 ID 的业务字段。中途失败时修复权限或网络后重跑。HTTP 服务不自动写数据库，也不提供公开初始化接口。
 
-HTTP 服务不会自动初始化数据库，也没有公开初始化或管理路由。新增原料时先写原料，再写引用该原料的酒谱；完整酒谱需包含中文/英文名称、分类、配方、步骤和来源链接。数据无效或引用断裂时 API 返回 `503`，在后台修复后会恢复。
+导入的每款酒包含中文和英文名称、IBA 分组、材料剂量、角色、制作步骤及官方来源。当前全量为 102 款；图片字段指向后端 `/media/cocktails/crayon/...` 和 `/media/cocktails/originals/...`，图片二进制不存入数据库。
 
-## 4. 构建和发布容器
+## 3. 构建与发布
 
-Docker 构建上下文必须是**仓库根目录**，Dockerfile 路径选 `server/Dockerfile`：
+先执行完整验证、生成导入文件和部署包：
+
+```sh
+npm run check
+npm run server:build
+npm run db:export
+npm run deploy:package
+```
+
+输出 `artifacts/cat-tavern-tcb-deploy.tar.gz`。解压后的目录是构建上下文，顶层 `Dockerfile` 与仓库的 `server/Dockerfile` 相同。包中包含全量目录、TCB 导入文件、102 张蜡笔图和 102 张原图，不包含本机密钥。微信云托管控制台上传该目录并使用顶层 Dockerfile，监听端口设为 `80`，注入上一节环境变量。
+
+若直接从仓库构建，使用仓库根目录作为上下文：
 
 ```sh
 docker build -f server/Dockerfile -t cat-tavern-api .
-docker run --rm --env-file .env.local -e PORT=80 -p 8080:80 cat-tavern-api
+docker run --rm --env-file .env.local -e NODE_ENV=production -e PORT=80 -p 8080:80 cat-tavern-api
 ```
 
-该镜像使用 Node.js 22；也可在平台支持时切换为 Node.js 20 的相应镜像，并重新执行验证。镜像只运行已编译的服务代码，启动入口为 `node dist/server/src/index.js`。构建需要联网安装 npm 依赖，镜像不包含 `.env*` 和本地项目私有配置。
+服务只执行已编译的 `dist/server/src/index.js`。生产模式缺少 TCB 环境 ID 会拒绝启动；数据库异常返回 503，不会回退到演示目录。
 
-云托管服务设置容器监听端口 `80`，配置上述环境变量，启用适合当前流量的实例规格。发布前先完成数据库初始化。HTTP 存活探针用 `/healthz`，就绪探针用 `/readyz`：前者只检查进程，后者跳过缓存实际读取并校验 TCB 两个集合；成功后才切换业务流量。
+CloudBase CLI 发布方法见 [CLI 说明](cloudbase-cli.md)。需要真实登录身份才能查询现有服务和发布版本；微信开发者工具登录不等于 CloudBase CLI 登录。先核对现有服务，再部署，避免误建新服务。上线前配置就绪检查 `/readyz`，仅就绪后切换流量。
 
-小程序通过微信网关访问时，按平台当前控制台配置授权小程序 AppID 与服务调用关系，并优先关闭公网匿名入口。仅为外部联调临时开放公网时，也只提供本期公开的只读酒谱 API。任何客户端自填的 `X-WX-OPENID` / `X-WX-FROM-OPENID` 都不构成服务端鉴权；将来加入账号写操作时，必须使用可信平台网关的身份并实施资源授权。
+## 4. 小程序接入与图片
 
-## 5. 小程序连接真实服务
+`miniprogram/config.ts` 配置云环境和服务名，启动时初始化云能力。首次进入页面获取 `/api/catalog`；成功后缓存远端目录。旧的 39 款目录缓存已失效；连接失败显示加载失败或已缓存的目录，支持重新加载。
 
-在微信开发者工具中打开仓库根目录，改为自己的 AppID；将小程序配置中的演示模式切换为云模式，填写上述环境 ID 和云托管服务名。调用模式为：
+图片同样经 `wx.cloud.callContainer` 获取二进制并写入设备缓存，避免依赖额外图片域名。云托管需要允许小程序访问 `/api/*` 和 `/media/cocktails/*`。图片失败显示占位；首次加载需联网。图片样式保留 `aspectFill` 撑满裁剪。小程序包只保留界面图标、猫咪 IP 和通用占位资源。
 
-```ts
-wx.cloud.init({ env: '实际环境ID', traceUser: false });
-wx.cloud.callContainer({
-  config: { env: '实际环境ID' },
-  path: '/api/catalog',
-  method: 'GET',
-  header: { 'X-WX-SERVICE': '实际云托管服务名' },
-});
-```
+公开只读接口：
 
-`/api/catalog` 返回 `{ data: { version, cocktails, ingredients } }`；`/api/cocktails/:id` 返回 `{ data: Cocktail }`。失败时返回 `{ error: { code, message } }` 和正确 HTTP 状态码。前端的云模式必须处理请求失败并明确展示离线缓存状态，不将内置演示数据标为云端数据。
+| 接口 | 用途 |
+| --- | --- |
+| `GET /healthz` | 进程存活，不依赖数据库 |
+| `GET /readyz` | 绕过目录缓存检查 TCB 数据，失败为 503 |
+| `GET /api/catalog` | `{ data: { version, cocktails, ingredients } }` |
+| `GET /api/cocktails/:id` | 酒谱详情；无效 ID 返回 400，不存在返回 404 |
+| `GET /media/cocktails/crayon/:filename` | 蜡笔图 |
+| `GET /media/cocktails/originals/:filename` | 原图 |
 
-## 6. 发布验证
+API 默认每个连接 IP 每分钟 120 次，静态图片和健康探针不占 API 限额。多实例时按实例限流；生产网关需按实际代理配置，否则共享出口可能共用额度。
 
-- `/healthz` 返回 `200`，`mode` 为 `cloud`。
-- `/readyz` 返回 `200`；权限错误、未初始化数据或数据库不可用时应为 `503`。
-- `/api/catalog` 返回完整酒谱，响应头 `X-Catalog-Source` 为 `cloud`；超过 100 条仍能完整返回。
-- 真机进入酒谱列表、查看详情、调整酒柜并核对「可调 / 差 1 款」结果，验证收藏和历史在重启后保留。
-- 弱网或断网后确认显示缓存/失败提示；恢复网络后可重试。
+## 5. 发布验收
 
-仓库测试会覆盖 API 行为、分页、云依赖失败、无效云数据、缓存失效和请求限制。真实云权限、微信网关、真机布局和发布审核必须使用你的账号环境验证；当前代码不包含账号凭证，也未替你创建或发布远端资源。
+1. `/healthz`、`/readyz` 返回 200，`mode` 为 `cloud`。
+2. `/api/catalog` 的 `X-Catalog-Source` 为 `cloud`，包含全部 102 款和有效原料引用；超过 100 条仍完整读取。
+3. 从目录中取图片路径，经同一云托管访问，确认返回 `image/webp` 和图片内容。
+4. 真机搜索新增酒款、打开详情、调整酒柜、收藏并重启核对数据。弱网/断网显示缓存或重试提示，恢复网络后可重新加载。
+5. TCB 不可用时 `/readyz` 和业务 API 返回 503；修复后恢复，不输出虚假成功。
 
-SDK 用法依据：[CloudBase Node SDK](https://github.com/TencentCloudBase/node-sdk)、[数据库 get / set / 分页说明](https://github.com/TencentCloudBase/node-sdk/blob/master/docs/database/database.md)、[初始化和服务端凭证](https://docs.cloudbase.net/api-reference/server/node/initialize)。
+本地测试和部署包不能代替真实环境的权限、容器构建与微信网关验证。云端发布结果以实际调用和探针结果为准。

@@ -1,6 +1,6 @@
 import { familyOptions } from '../../shared/catalog';
-import { getDailyCocktail } from '../../shared/matching';
-import { getCatalog, refreshCatalog } from '../../services/catalog';
+import { getDailyCocktail, normalizeIngredientIds } from '../../shared/matching';
+import { catalogFailureNotice, getCatalog, refreshCatalog } from '../../services/catalog';
 import { readList } from '../../services/storage';
 import type { Cocktail, Ingredient } from '../../shared/types';
 import { RecipeCard, toCard } from '../../utils/view-model';
@@ -9,7 +9,7 @@ Page({
   data: {
     families: familyOptions, selectedFamily: 'all', query: '', cards: [] as RecipeCard[],
     daily: { id: '', name: '', english: '', copy: '' },
-    total: 0, notice: '',
+    total: 0, notice: '', loading: true, version: '',
   },
   onShow() {
     this.render();
@@ -17,7 +17,7 @@ Page({
   },
   render() {
     const catalog = getCatalog();
-    const owned = readList('bar');
+    const owned = normalizeIngredientIds(readList('bar'), catalog.ingredients);
     const ingredientById = new Map(catalog.ingredients.map((ingredient) => [ingredient.id, ingredient]));
     const query = normalizeSearchText(this.data.query);
     const filtered = catalog.cocktails.filter((recipe) =>
@@ -27,13 +27,15 @@ Page({
     const daily = getDailyCocktail(catalog.cocktails);
     this.setData({
       total: catalog.cocktails.length,
+      version: catalog.version,
       cards: filtered.map((recipe) => toCard(recipe, owned)),
       daily: daily ? { id: daily.id, name: daily.name_zh, english: daily.name_en, copy: daily.healing_copy } : this.data.daily,
     });
   },
   async sync() {
+    this.setData({ loading: true });
     const ok = await refreshCatalog();
-    this.setData({ notice: ok ? '' : '配方暂未更新，先逛逛现有酒单吧。下拉可重试。' });
+    this.setData({ loading: false, notice: ok ? '' : catalogFailureNotice() });
     this.render();
   },
   async onPullDownRefresh() {

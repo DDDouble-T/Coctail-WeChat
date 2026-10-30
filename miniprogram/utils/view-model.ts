@@ -21,6 +21,7 @@ export interface RecipeCard {
 }
 
 export function toCard(recipe: Cocktail, owned: readonly string[], matching = false, result?: MatchResult): RecipeCard {
+  // 页面已使用当前后端材料字典归一 ID；卡片只处理这些 ID，不再依赖内置原料。
   const match = result || matchCocktails([recipe], owned)[0];
   return {
     id: recipe.id, name: recipe.name_zh, english: recipe.name_en,

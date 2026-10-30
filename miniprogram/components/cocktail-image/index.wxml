@@ -1,0 +1,5 @@
+<view class="remote-image">
+  <image wx:if="{{localPath}}" src="{{localPath}}" mode="aspectFill" binderror="imageError" />
+  <view wx:elif="{{failed}}" class="image-fallback" catchtap="retry" role="button" aria-label="重新加载图片"><text>↻</text><view>点此重试图片</view></view>
+  <view wx:else class="image-fallback"><text>✦</text><view>图片加载中</view></view>
+</view>

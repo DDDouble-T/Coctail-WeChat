@@ -1,5 +1,5 @@
-// 填入微信云托管环境 ID 与服务名后启用远端配方；留空可直接体验完整本地 MVP。
+// 业务接口和鸡尾酒图片均通过云托管网关访问，无需另外配置公网图片域名。
 export const cloudConfig = {
-  envId: '', // 云环境备用：paw-inn-d9gixxkg3f894407e
-  serviceName: 'cat-tavern',
+  envId: 'paw-inn-d9gixxkg3f894407e',
+  serviceName: 'paw-inn',
 };

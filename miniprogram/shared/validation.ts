@@ -9,7 +9,7 @@ const isObject = (value: unknown): value is Record<string, unknown> => typeof va
 const isText = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0 && value.length <= 3000;
 const isId = (value: unknown): value is string => typeof value === 'string' && /^[a-z0-9][a-z0-9_-]{0,79}$/.test(value);
 
-// 缓存与远端数据走同一道校验，避免不完整云数据覆盖可以工作的本地目录。
+// 缓存与远端数据走同一道校验，拒绝不完整目录及非后端媒体路径。
 export function isCatalog(value: unknown): value is Catalog {
   if (!isObject(value) || !isText(value.version) || !Array.isArray(value.ingredients) || !Array.isArray(value.cocktails)) return false;
   if (!value.ingredients.length || !value.cocktails.length || value.ingredients.length > 1000 || value.cocktails.length > 1000) return false;
@@ -26,9 +26,9 @@ export function isCatalog(value: unknown): value is Catalog {
       if (!isText(recipe[key])) return false;
     }
     if (!/^https:\/\/iba-world\.com\//.test(recipe.source_url as string)) return false;
-    if (!/^https:\/\/iba-world\.com\/wp-content\/uploads\//.test(recipe.image_original_url as string)) return false;
-    // 鸡尾酒插画随包发布，避免云端数据注入任意远端资源或不存在的路径。
-    if (!/^\/assets\/cocktails\/[a-z0-9][a-z0-9_-]{0,79}-crayon\.webp$/.test(recipe.image_url as string)) return false;
+    if (!/^\/media\/cocktails\/originals\/[a-z0-9][a-z0-9_-]{0,79}\.(?:webp|jpe?g|png)$/.test(recipe.image_original_url as string)) return false;
+    // 只允许云托管的鸡尾酒媒体目录，图片组件负责鉴权下载与本地缓存。
+    if (!/^\/media\/cocktails\/crayon\/[a-z0-9][a-z0-9_-]{0,79}-crayon\.webp$/.test(recipe.image_url as string)) return false;
     if (!families.includes(recipe.family as string) || !ibaCategories.includes(recipe.iba_category as string) || !styles.includes(recipe.style as string) || !difficulties.includes(recipe.difficulty as string)) return false;
     if (!Array.isArray(recipe.steps) || !recipe.steps.length || !recipe.steps.every(isText)) return false;
     if (!Array.isArray(recipe.ingredients) || !recipe.ingredients.length || recipe.ingredients.length > 40) return false;

@@ -1,1 +1,1 @@
-{"component": true}
+{"component": true, "usingComponents": {"cocktail-image": "/components/cocktail-image/index"}}

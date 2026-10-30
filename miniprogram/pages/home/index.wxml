@@ -1,7 +1,7 @@
 <view class="page home">
   <view class="intro-row"><view><view class="eyebrow">A LITTLE SIP OF HAPPINESS</view><view class="greeting">欢迎光临，今晚喝点什么？</view></view><button class="favorite-link" bindtap="openFavorites" aria-label="查看我的收藏">♡</button></view>
-  <view wx:if="{{notice}}" class="notice">{{notice}}</view>
-  <view class="daily" bindtap="openDaily" role="button" aria-label="今日特调：{{daily.name}}">
+  <view wx:if="{{notice}}" class="notice" bindtap="sync" role="button">{{notice}}</view>
+  <view wx:if="{{daily.id}}" class="daily" bindtap="openDaily" role="button" aria-label="今日特调：{{daily.name}}">
     <view class="daily-top"><text class="daily-label">✦ 今日特调</text><text class="daily-number">ONE DAY, ONE COCKTAIL</text></view>
     <view class="daily-body"><view class="daily-copy"><view class="daily-name-row"><view class="daily-name">{{daily.name}}</view><view class="daily-english">{{daily.english}}</view></view><view class="healing">{{daily.copy}}</view><view class="daily-cta">让猫咪店长调一杯 <text>↗</text></view></view><image class="bartender" src="/assets/cat-bartender.png" mode="aspectFit" /></view>
   </view>
@@ -10,4 +10,4 @@
   <view class="section-heading"><view><text class="section-title">翻翻酒单</text><text class="menu-en">THE MENU</text></view></view>
 </view>
 <view class="category-sticky"><scroll-view scroll-x enhanced show-scrollbar="{{false}}" class="category-scroll"><view class="categories"><button wx:for="{{families}}" wx:key="id" class="category {{selectedFamily === item.id ? 'active' : ''}}" data-id="{{item.id}}" bindtap="selectFamily"><view>{{item.label}}</view><text>{{item.english}}</text></button></view></scroll-view></view>
-<view class="page menu-list"><view class="result-count">{{cards.length}} 杯{{query ? '搜索结果' : '精选配方'}} <text>· 每一杯都有自己的小性格</text></view><recipe-card wx:for="{{cards}}" wx:key="id" card="{{item}}" /><view class="empty" wx:if="{{!cards.length}}"><image src="/assets/cat-bartender.png" /><view class="empty-title">这页酒单还空着呢</view><view>换个分类或关键词，再找找吧。</view><button class="text-button" bindtap="clearSearch">查看全部配方 →</button></view><view class="footer-note">理性饮酒 · 未满 18 周岁禁止饮酒</view></view>
+<view class="page menu-list"><view class="result-count">{{cards.length}} 杯{{query ? '搜索结果' : '精选配方'}} <text>· 每一杯都有自己的小性格</text></view><recipe-card wx:for="{{cards}}" wx:key="id" card="{{item}}" version="{{version}}" /><view class="empty" wx:if="{{!total}}"><image src="/assets/cat-bartender.png" /><view class="empty-title">{{loading ? '正在准备酒单' : '酒单暂时没有加载成功'}}</view><view>{{loading ? '猫咪正在取回全部配方，请稍候。' : '请检查网络，重新加载试试。'}}</view><button wx:if="{{!loading}}" class="text-button" bindtap="sync">重新加载 →</button></view><view class="empty" wx:elif="{{!cards.length}}"><image src="/assets/cat-bartender.png" /><view class="empty-title">这页酒单还空着呢</view><view>换个分类或关键词，再找找吧。</view><button class="text-button" bindtap="clearSearch">查看全部配方 →</button></view><view class="footer-note">理性饮酒 · 未满 18 周岁禁止饮酒</view></view>

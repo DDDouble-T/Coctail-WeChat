@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import request from 'supertest';
-import { cocktails, ingredients } from '../miniprogram/shared/catalog';
+import { cocktails, ingredients } from '../server/src/builtin';
 import { createApp } from '../server/src/app';
 import { createCatalogRepository } from '../server/src/catalog';
 import { readConfig } from '../server/src/config';
@@ -36,6 +37,23 @@ test('本地 API 返回完整内置酒谱，详情有确定的 400/404 行为', 
   await request(app).get('/missing-route').expect(404);
 });
 
+test('全量蜡笔图及原图经后端返回，禁止读取非图片档案与目录', async () => {
+  const app = appWith();
+  for (const cocktail of cocktails) {
+    for (const url of [cocktail.image_url, cocktail.image_original_url]) {
+      const response = await request(app).get(url).expect(200);
+      assert.match(response.headers['content-type'], /^image\//);
+      assert.match(response.headers['cache-control'], /max-age=86400/);
+      const expected = readFileSync(`data/iba-cocktails/${url.replace('/media/cocktails/', '')}`);
+      assert.deepEqual(response.body, expected, url);
+    }
+  }
+  await request(app).get('/media/cocktails/manifest.json').expect(404);
+  await request(app).get('/media/cocktails/crayon/').expect(404);
+  await request(app).get('/media/cocktails/crayon/missing.webp').expect(404);
+  await request(app).get('/media/cocktails/crayon/%2e%2e%2fmanifest.json').expect(404);
+});
+
 test('云依赖失效时存活探针仍正常，就绪及业务接口明确返回 503', async () => {
   const app = appWith({ async readPage() { throw new Error('模拟数据库网络故障'); } });
   const health = await request(app).get('/healthz').expect(200);
@@ -48,7 +66,7 @@ test('云依赖失效时存活探针仍正常，就绪及业务接口明确返�
 });
 
 test('TCB 超过 100 条时分页读取两个集合，不截断数据', async () => {
-  const manyCocktails = Array.from({ length: 205 }, (_, index) => ({ ...cocktails[0], id: `recipe-${index}` }));
+  const manyCocktails = [...cocktails, ...Array.from({ length: 205 - cocktails.length }, (_, index) => ({ ...cocktails[0], id: `recipe-${index}` }))];
   const manyIngredients = [
     ...ingredients,
     ...Array.from({ length: 105 }, (_, index) => ({ ...ingredients[0], id: `extra-ingredient-${index}` })),
@@ -72,6 +90,7 @@ test('无效、空白或引用断裂的云酒谱不能进入前端', async () =>
     { cocktails: [missingSteps], ingredients },
     { cocktails: [brokenReference], ingredients },
     { cocktails: [], ingredients: [] },
+    { cocktails: cocktails.slice(0, 39), ingredients },
     { cocktails: [cocktails[0], cocktails[0]], ingredients },
   ]) {
     const { database } = mockDatabase(records);
@@ -81,7 +100,7 @@ test('无效、空白或引用断裂的云酒谱不能进入前端', async () =>
 
 test('响应仅投影业务字段，数据库元数据和内部字段不会泄露', async () => {
   const { database } = mockDatabase({
-    cocktails: [{ ...cocktails[0], _id: 'internal-doc', _openid: 'private-openid', internal_note: 'private' }],
+    cocktails: cocktails.map((cocktail) => ({ ...cocktail, _id: 'internal-doc', _openid: 'private-openid', internal_note: 'private' })),
     ingredients: ingredients.map((ingredient) => ({ ...ingredient, _id: 'internal-id', internal_cost: 10 })),
   });
   const response = await request(appWith(database)).get('/api/catalog').expect(200);
@@ -114,7 +133,7 @@ test('缓存合并并发请求，就绪检查强制刷新，刷新失败使缓�
 });
 
 test('云数据变更会改变版本，重复读取不改变版本', async () => {
-  const records = { cocktails: [{ ...cocktails[0] }], ingredients };
+  const records = { cocktails: cocktails.map((cocktail) => ({ ...cocktail })), ingredients };
   const { database } = mockDatabase(records);
   const repository = createCatalogRepository(database, 0);
   const initial = await repository.getCatalog();
@@ -146,6 +165,7 @@ test('生产环境缺少环境 ID 或凭证只配置一半时拒绝启动', () =
   assert.throws(() => readConfig({ TRUST_PROXY_HOPS: '100' }), /TRUST_PROXY_HOPS/);
   assert.equal(readConfig({}).envId, '');
   assert.equal(readConfig({ PORT: '80', CLOUD_BASE_ENV_ID: 'cloud1-test' }).port, 80);
+  assert.equal(readConfig({ CLOUDBASE_APIKEY: ' server-api-key ' }).accessKey, 'server-api-key');
 });
 
 test('初始化按稳定 ID 幂等覆写，保留额外记录且写入失败时拒绝成功', async () => {

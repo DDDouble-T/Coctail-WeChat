@@ -4,6 +4,8 @@ coverage/
 project.private.config.json
 server/.env
 .env
+.env.*
+!.env.example
 *.log
 .DS_Store
 artifacts/

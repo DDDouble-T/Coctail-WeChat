@@ -1,0 +1,5 @@
+:host { display: block; width: 100%; height: 100%; }
+.remote-image, image { display: block; width: 100%; height: 100%; }
+.remote-image { overflow: hidden; }
+.image-fallback { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f8eee0; color: #a48c75; font-size: 18rpx; }
+.image-fallback text { font-size: 36rpx; }

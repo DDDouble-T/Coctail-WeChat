@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "猫咪酒馆 · 微信小程序与云托管服务",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit -p miniprogram/tsconfig.json && tsc --noEmit -p server/tsconfig.json",
     "check:templates": "node scripts/check-miniprogram.mjs",
@@ -14,7 +16,10 @@
     "server:start": "node dist/server/src/index.js",
     "db:seed": "tsx server/src/seed.ts",
     "iba:images": "tsx scripts/import-iba-images.ts",
-    "assets": "node scripts/generate-assets.mjs"
+    "assets": "node scripts/generate-assets.mjs",
+    "db:export": "tsx scripts/export-tcb-data.ts",
+    "iba:catalog": "python3 scripts/import-iba-catalog.py",
+    "deploy:package": "node scripts/package-deployment.mjs"
   },
   "dependencies": {
     "@cloudbase/node-sdk": "^3.0.0",

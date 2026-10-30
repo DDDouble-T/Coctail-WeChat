@@ -1,4 +1,4 @@
-import { CATALOG_VERSION, cocktails, ingredients } from '../../miniprogram/shared/catalog';
+import { CATALOG_VERSION, cocktails, ingredients } from './builtin';
 import type { Cocktail, Ingredient } from '../../miniprogram/shared/types';
 import { isCatalog } from '../../miniprogram/shared/validation';
 import { readConfig } from './config';

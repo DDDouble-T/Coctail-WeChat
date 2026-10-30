@@ -1,6 +1,7 @@
 export interface ServerConfig {
   port: number;
   envId: string;
+  accessKey?: string;
   region?: string;
   secretId?: string;
   secretKey?: string;
@@ -29,6 +30,7 @@ export function readConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
   }
   return {
     envId,
+    accessKey: env.CLOUDBASE_APIKEY?.trim() || undefined,
     port: integer(env.PORT, 8080, 1, 65535, 'PORT'),
     region: env.TENCENTCLOUD_REGION?.trim() || undefined,
     secretId,

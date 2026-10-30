@@ -1,5 +1,5 @@
 <view class="recipe-card {{card.matching && card.status === 'far' ? 'far' : ''}}" bindtap="open" role="button" aria-label="查看{{card.name}}配方">
-  <view class="illustration"><image src="{{card.image}}" mode="aspectFill" /></view>
+  <view class="illustration"><cocktail-image path="{{card.image}}" version="{{version}}" /></view>
   <view class="content">
     <view class="name-row"><text class="name">{{card.name}}</text><text class="arrow">↗</text></view>
     <view class="english">{{card.english}}</view>

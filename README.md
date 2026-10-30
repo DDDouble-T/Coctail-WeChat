@@ -1,43 +1,46 @@
 # 猫咪酒馆
 
-一个面向家庭调酒爱好者的微信小程序 MVP：第一 Tab 是「调酒配方」，按酒款家族浏览、搜索和查看今日特调；第二 Tab 是「我的酒吧」，勾选材料后按匹配度找出今晚能调的配方。收藏和材料柜保存在当前设备，不建立账号也能使用。
+面向家庭调酒爱好者的微信小程序：从后端浏览 IBA 全量酒谱，按材料匹配今晚能调的酒。收藏和酒柜保存在当前设备。
 
-## 本地开发
+## 开发与验证
 
-环境要求：Node.js 20+（推荐 22）和微信开发者工具。
+环境要求 Node.js 22+、微信开发者工具；更新官方数据时需要 Python 3 和 requests。
 
 ```sh
 npm ci
 npm run check
-npm run assets
-npm run iba:images
-```
-
-在微信开发者工具中打开仓库根目录，将 `project.config.json` 的 `appid` 换成自己的 AppID。`miniprogram/config.ts` 留空时使用内置 39 款 IBA 酒谱；输入云环境 ID 和云托管服务名后，启动时会尝试更新目录，失败会保留本地可用目录并提示。`npm run iba:images` 可重新抓取 IBA 官方 sitemap 中的鸡尾酒图片，输出原图、蜡笔效果图和来源清单；其中目录已有的 39 款图片会进入小程序资源包。
-
-本地调试仍使用 `project.config.json` 中的正式 AppID，只需保持 `miniprogram/config.ts` 的 `envId` 为空即可使用内置酒谱，不需要切换游客身份。`project.private.config.json` 会覆盖公共配置，避免在其中设置不同的 AppID。开发者工具自身接口报 `INVALID_TOKEN` 时，需要退出工具账号并扫码重新登录，关闭并重新打开项目；切换本地酒谱不会刷新工具凭证。
-
-## 服务端
-
-```sh
+npm run server:build
 npm run server:dev
-# GET http://localhost:8080/healthz
-# GET http://localhost:8080/api/catalog
 ```
 
-后端是 Express + `@cloudbase/node-sdk`。没有 `CLOUD_BASE_ENV_ID` 时为本地内置模式；生产环境必须配置真实 TCB 环境 ID，云数据库异常返回 503，不会静默回退。TCB 集合初始化由显式命令完成：
+本地 API 为 `http://localhost:8080/api/catalog`，未配置 TCB 时由后端读取全量快照。生产环境必须读取 TCB，数据库失败返回 503。小程序通过 `wx.cloud.callContainer` 访问 `miniprogram/config.ts` 配置的云托管服务，不再内置 39 款酒单；首次使用需要连接后端，成功后保留校验过的离线目录。酒款图片经同一云托管服务下载并缓存到设备，全部原图与蜡笔图随服务端发布。
+
+微信开发者工具使用 `project.config.json` 的正式 AppID。若工具自身接口出现 `INVALID_TOKEN`，退出工具账号并扫码重新登录。
+
+## TCB 初始化与部署
+
+继续使用微信云托管 + TCB **文档数据库**，不需要 SQL 或 MySQL。先创建 `ingredients` 和 `cocktails` 两个集合，客户端权限设置为仅管理端可读写。
 
 ```sh
+npm run db:export
+# 控制台依次导入 server/tcb/ingredients.jsonl、server/tcb/cocktails.jsonl
+# 或在已注入 TCB 写权限凭证的终端执行：
 node --env-file=.env.local --import tsx server/src/seed.ts
+
+npm run deploy:package
 ```
 
-云托管、集合权限、密钥和发布步骤见 [docs/deployment.md](docs/deployment.md)。服务端只读酒谱 API，不接收客户端自填的 OpenID 作为鉴权；用户材料仍只在小程序本地保存。
+种子使用稳定文档 ID，可重复执行，保留数据库中额外新增的酒谱。部署包输出到 `artifacts/cat-tavern-tcb-deploy.tar.gz`，包含全量酒谱、TCB 导入数据和全部酒款图片。具体配置、发布命令与验收见 [部署说明](docs/deployment.md)，GitHub 自动构建绑定见 [原生流水线配置](docs/git-pipeline.md)。打包完成不代表已发布到云端。
 
-## 目录
+## 数据与图片
 
-- `miniprogram/shared/`：类型、39 款配方、材料归一化和匹配算法。
-- `miniprogram/pages/`：调酒配方、我的酒吧、详情和收藏页面。
-- `miniprogram/assets/cocktails/`：39 款配方使用的蜡笔滤镜图；`data/iba-cocktails/`：IBA 全站 102 款原图、处理图和来源摘要。
-- `server/`：云托管服务、TCB 数据访问和幂等 seed 脚本。
-- `design/`、`miniprogram/assets/`：猫咪 IP 原图、可编辑插画和压缩后的运行资源。
-- `tests/`：配方、匹配、API、TCB 失败路径和 seed 测试。
+`server/data/catalog.json` 是服务端完整目录；`data/iba-cocktails/recipes-source.json` 保存官方原文，`server/data/iba-editorial.json` 保存审核后的中文表达和材料映射。当前按 IBA 官网 sitemap 收录全部 102 款，官方新增或调整时通过以下命令更新并复核：
+
+```sh
+npm run iba:catalog -- --refresh
+npm run iba:images
+npm run db:export
+npm run check
+```
+
+导入器会检查官方原料、做法和装饰是否变化；发生变化时必须复核中文数据后才能生成新目录。原图来源和摘要见 `data/iba-cocktails/manifest.json`。酒款图片仅存后端 `data/iba-cocktails/{originals,crayon}`，通过 `/media/cocktails/` 提供，不占小程序主包。

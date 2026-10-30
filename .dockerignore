@@ -8,8 +8,15 @@ dist
 **/.env.*
 *.log
 coverage
+artifacts
+._*
 tests
 docs
 tasks
-data
+data/**
+!data/iba-cocktails/
+!data/iba-cocktails/crayon/
+!data/iba-cocktails/crayon/**
+!data/iba-cocktails/originals/
+!data/iba-cocktails/originals/**
 project.private.config.json

@@ -24,10 +24,24 @@ async function walk(directory) {
     else if (entry.name.endsWith('.wxml')) {
       const source = await readFile(full, 'utf8');
       for (const match of source.matchAll(/(?:src|iconPath|selectedIconPath)="\/??(assets\/[^"]+)"/g)) assetPaths.add(match[1]);
+    } else if (entry.name.endsWith('.json')) {
+      const config = JSON.parse(await readFile(full, 'utf8'));
+      for (const component of Object.values(config.usingComponents ?? {})) {
+        const base = component.startsWith('/') ? path.join(mini, component.slice(1)) : path.resolve(directory, component);
+        if (!base.startsWith(`${mini}${path.sep}`)) throw new Error(`组件路径超出小程序：${component}`);
+        for (const extension of ['.ts', '.json', '.wxml']) await readFile(`${base}${extension}`);
+      }
     }
   }
 }
 await walk(mini);
+const metadata = await readFile(path.join(mini, 'shared/catalog.ts'), 'utf8');
+if (/export\s+const\s+(?:cocktails|ingredients)\s*[:=]/.test(metadata)) throw new Error('小程序不得重新内置配方或原料，目录必须由后端加载');
+const bundledCocktails = await readdir(path.join(mini, 'assets/cocktails')).catch((error) => {
+  if (error.code === 'ENOENT') return [];
+  throw error;
+});
+if (bundledCocktails.length) throw new Error('鸡尾酒图片必须保存在后端，不能打入小程序包');
 for (const asset of assetPaths) {
   try { await readFile(path.join(mini, asset)); } catch { throw new Error(`WXML 引用了不存在的资源：${asset}`); }
 }

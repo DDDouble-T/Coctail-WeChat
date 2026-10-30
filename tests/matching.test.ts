@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { cocktails, ingredients } from '../miniprogram/shared/catalog';
-import { getDailyCocktail, matchCocktails, normalizeIngredientIds } from '../miniprogram/shared/matching';
-import type { Cocktail, IbaCategory } from '../miniprogram/shared/types';
+import { cocktails, ingredients } from '../server/src/builtin';
+import { getDailyCocktail, matchCocktails as matchRecipes, normalizeIngredientIds as normalize } from '../miniprogram/shared/matching';
+import type { Cocktail, IbaCategory, Ingredient } from '../miniprogram/shared/types';
+
+const normalizeIngredientIds = (values: readonly string[], dictionary: readonly Ingredient[] = ingredients) => normalize(values, dictionary);
+const matchCocktails = (recipes: readonly Cocktail[], owned: readonly string[]) => matchRecipes(recipes, owned, ingredients);
 
 function cocktail(id: string): Cocktail {
   const found = cocktails.find((entry) => entry.id === id);
@@ -28,7 +31,8 @@ test('归一化不把相似但不同的原料当作替代品', () => {
   assert.deepEqual(normalizeIngredientIds(['Bourbon', 'Rye Whiskey', 'Vodka', 'Vodka Citron', 'Ginger Beer', 'Ginger Ale']), [
     'bourbon', 'rye-whiskey', 'vodka', 'citron-vodka', 'ginger-beer', 'ginger-ale',
   ]);
-  assert.deepEqual(normalizeIngredientIds(['矿泉水', 'Mineral Water', '葡萄柚汁', 'Rum', 'Whiskey', 'Brandy', '不存在的材料']), []);
+  assert.deepEqual(normalizeIngredientIds(['矿泉水', 'Mineral Water', '葡萄柚汁', 'Rum', 'Whiskey', '不存在的材料']), []);
+  assert.deepEqual(normalizeIngredientIds(['Brandy', 'Cognac']), ['brandy', 'cognac']);
 });
 
 test('归一化支持外部字典，保留首次选择顺序且不修改输入', () => {

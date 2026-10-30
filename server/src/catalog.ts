@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { CATALOG_VERSION, cocktails, ingredients } from '../../miniprogram/shared/catalog';
+import { builtinCatalog, CATALOG_VERSION } from './builtin';
 import type { Catalog, Cocktail, Ingredient } from '../../miniprogram/shared/types';
 import { isCatalog } from '../../miniprogram/shared/validation';
 import type { CatalogDatabase, CollectionName } from './database';
@@ -57,13 +57,12 @@ function publicCocktail(cocktail: Cocktail): Cocktail {
 }
 
 export function createCatalogRepository(database?: CatalogDatabase, cacheMs = 30_000): CatalogRepository {
-  const builtin: Catalog = { version: CATALOG_VERSION, cocktails, ingredients };
   let cached: { catalog: Catalog; expiresAt: number } | undefined;
   let pending: Promise<Catalog> | undefined;
   return {
     mode: database ? 'cloud' : 'builtin',
     async getCatalog(fresh = false) {
-      if (!database) return builtin;
+      if (!database) return builtinCatalog;
       if (!fresh && cached && Date.now() < cached.expiresAt) return cached.catalog;
       if (pending) return pending;
       pending = (async () => {
@@ -77,6 +76,10 @@ export function createCatalogRepository(database?: CatalogDatabase, cacheMs = 30
           ingredients: cloudIngredients,
         };
         if (!isCatalog(candidate)) throw new Error('云数据库酒谱结构不完整，请检查数据或执行初始化');
+        const ids = new Set(candidate.cocktails.map((cocktail) => cocktail.id));
+        if (builtinCatalog.cocktails.some((cocktail) => !ids.has(cocktail.id))) {
+          throw new Error('TCB 尚未包含全部 IBA 酒谱，请执行全量初始化');
+        }
         // 只输出公开业务字段，避免 SDK 元数据或后台新增字段泄露给客户端。
         const catalog: Catalog = {
           version: '',

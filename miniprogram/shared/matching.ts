@@ -1,4 +1,3 @@
-import { ingredients } from './catalog';
 import type { Cocktail, Ingredient, IbaCategory, MatchResult } from './types';
 
 function ingredientKey(value: string): string {
@@ -8,7 +7,7 @@ function ingredientKey(value: string): string {
 /** 只识别字典中的同义词，不把不同基酒或原料视作替代品。 */
 export function normalizeIngredientIds(
   values: readonly string[],
-  dictionary: readonly Ingredient[] = ingredients,
+  dictionary: readonly Ingredient[] = [],
 ): string[] {
   const aliases = new Map<string, string>();
   dictionary.forEach((ingredient) => {
@@ -30,9 +29,9 @@ const classicOrder: Record<IbaCategory, number> = {
   new_era: 2,
 };
 
-export function matchCocktails(recipes: readonly Cocktail[], owned: readonly string[]): MatchResult[] {
+export function matchCocktails(recipes: readonly Cocktail[], owned: readonly string[], dictionary: readonly Ingredient[] = []): MatchResult[] {
   // 同时支持目录之外、已经归一的配方 ID；同义词仍以材料字典为准。
-  const ownedIds = new Set([...owned, ...normalizeIngredientIds(owned)]);
+  const ownedIds = new Set([...owned, ...normalizeIngredientIds(owned, dictionary)]);
   return recipes.map((cocktail): MatchResult => {
     const essential = cocktail.ingredients.filter((line) => line.is_essential && !line.is_garnish);
     const missing = essential.filter((line) => !ownedIds.has(line.ingredient_id));

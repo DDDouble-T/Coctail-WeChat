@@ -1,33 +1,33 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { CATALOG_VERSION, cocktails, familyOptions, ibaLabels, ingredientGroups, ingredients, styleLabels } from '../miniprogram/shared/catalog';
+import { CATALOG_VERSION, cocktails, ingredients } from '../server/src/builtin';
+import { familyOptions, ibaLabels, ingredientGroups, styleLabels } from '../miniprogram/shared/catalog';
 import { normalizeIngredientIds } from '../miniprogram/shared/matching';
 
-test('目录包含 30–40 款完整配方且每个产品家族均可浏览', () => {
+test('后端目录覆盖全量 IBA 配方且每个产品家族均可浏览', () => {
   assert.ok(CATALOG_VERSION.length > 0);
-  assert.ok(cocktails.length >= 30 && cocktails.length <= 40);
+  assert.equal(cocktails.length, 102);
   assert.equal(new Set(cocktails.map((entry) => entry.id)).size, cocktails.length);
   assert.equal(familyOptions.length, 8);
-  let bundledImageBytes = 0;
+
   for (const family of familyOptions.filter((entry) => entry.id !== 'all')) {
     assert.ok(cocktails.some((entry) => entry.family === family.id), family.id);
   }
   for (const cocktail of cocktails) {
     assert.ok(cocktail.name_zh && cocktail.name_en && cocktail.taste && cocktail.healing_copy && cocktail.glass, cocktail.id);
-    assert.ok(cocktail.ingredients.length >= 2 && cocktail.steps.length >= 2, cocktail.id);
+    assert.ok(cocktail.ingredients.length >= 2 && cocktail.steps.length >= 1, cocktail.id);
     assert.ok(cocktail.ingredients.some((line) => line.is_essential), cocktail.id);
     assert.ok(ibaLabels[cocktail.iba_category] && styleLabels[cocktail.style], cocktail.id);
-    assert.equal(cocktail.image_url, `/assets/cocktails/${cocktail.id}-crayon.webp`);
-    assert.match(cocktail.image_original_url, /^https:\/\/iba-world\.com\/wp-content\/uploads\//);
-    const imagePath = path.join(process.cwd(), 'miniprogram', cocktail.image_url.slice(1));
-    assert.ok(existsSync(imagePath), `${cocktail.id} 蜡笔图必须随小程序发布`);
-    bundledImageBytes += statSync(imagePath).size;
+    assert.equal(cocktail.image_url, `/media/cocktails/crayon/${cocktail.id}-crayon.webp`);
+    assert.match(cocktail.image_original_url, /^\/media\/cocktails\/originals\//);
+    const imagePath = path.join(process.cwd(), 'data/iba-cocktails', cocktail.image_url.replace('/media/cocktails/', ''));
+    assert.ok(existsSync(imagePath), `${cocktail.id} 蜡笔图必须随后端发布`);
     assert.equal(cocktail.source_url, `https://iba-world.com/iba-cocktail/${cocktail.id}/`);
   }
-  assert.ok(bundledImageBytes <= 2 * 1024 * 1024, `鸡尾酒图片超出 2 MiB：${bundledImageBytes}`);
+  assert.equal(existsSync(path.join(process.cwd(), 'miniprogram/assets/cocktails')), false);
 });
 
 test('IBA sitemap 的 102 张原图及蜡笔图完整，manifest 原图摘要有效', () => {
@@ -55,7 +55,7 @@ test('全部配料归一为真实字典项，名称、分组与角色一致', ()
   for (const item of ingredients) {
     assert.ok(groups.has(item.group), item.id);
     for (const alias of [item.id, item.name_zh, item.name_en, ...item.aliases]) {
-      assert.deepEqual(normalizeIngredientIds([alias]), [item.id], `${item.id}: ${alias}`);
+      assert.deepEqual(normalizeIngredientIds([alias], ingredients), [item.id], `${item.id}: ${alias}`);
     }
   }
   for (const cocktail of cocktails) {

@@ -11,6 +11,8 @@ export function connectDatabase(config: ServerConfig) {
   if (!config.envId) throw new Error('访问 TCB 必须指定 CLOUD_BASE_ENV_ID');
   return cloudbase.init({
     env: config.envId,
+    // 普通云托管容器没有函数临时身份；显式传服务端 API Key，避免 SDK 版本的环境读取差异。
+    accessKey: config.accessKey,
     region: config.region,
     secretId: config.secretId,
     secretKey: config.secretKey,

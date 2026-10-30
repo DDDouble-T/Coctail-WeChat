@@ -1,0 +1,162 @@
+{"_id":"gin","id":"gin","name_zh":"金酒","name_en":"Gin","group":"base","aliases":["琴酒","杜松子酒","Dry Gin","London Dry Gin"]}
+{"_id":"bourbon","id":"bourbon","name_zh":"波本威士忌","name_en":"Bourbon Whiskey","group":"base","aliases":["波本","Bourbon","Bourbon Whisky"]}
+{"_id":"rye-whiskey","id":"rye-whiskey","name_zh":"黑麦威士忌","name_en":"Rye Whiskey","group":"base","aliases":["黑麦","Rye Whisky","Rye"]}
+{"_id":"scotch","id":"scotch","name_zh":"苏格兰威士忌","name_en":"Scotch Whisky","group":"base","aliases":["Scotch","Scotch Whiskey"]}
+{"_id":"vodka","id":"vodka","name_zh":"伏特加","name_en":"Vodka","group":"base","aliases":["原味伏特加","Smirnoff Vodka"]}
+{"_id":"citron-vodka","id":"citron-vodka","name_zh":"柠檬风味伏特加","name_en":"Vodka Citron","group":"base","aliases":["Citron Vodka","柠檬伏特加"]}
+{"_id":"white-rum","id":"white-rum","name_zh":"白朗姆酒","name_en":"White Rum","group":"base","aliases":["白朗姆","白兰姆","白兰姆酒","Light Rum","White Cuban Rum","White Cuban Ron"]}
+{"_id":"goslings-rum","id":"goslings-rum","name_zh":"高斯林黑朗姆酒","name_en":"Goslings Black Seal Rum","group":"base","aliases":["Goslings Rum","Gosling’s Black Seal Rum","Goslings Black Seal","高斯林朗姆酒"]}
+{"_id":"jamaican-rum","id":"jamaican-rum","name_zh":"牙买加朗姆酒","name_en":"Jamaican Rum","group":"base","aliases":["牙买加朗姆"]}
+{"_id":"cognac","id":"cognac","name_zh":"干邑白兰地","name_en":"Cognac","group":"base","aliases":["干邑","Cognac Brandy"]}
+{"_id":"pisco","id":"pisco","name_zh":"皮斯科","name_en":"Pisco","group":"base","aliases":["皮斯科白兰地"]}
+{"_id":"tequila","id":"tequila","name_zh":"100% 龙舌兰酒","name_en":"100% Agave Tequila","group":"base","aliases":["龙舌兰","龙舌兰酒","Tequila","Tequila 100% Agave"]}
+{"_id":"sweet-vermouth","id":"sweet-vermouth","name_zh":"甜红味美思","name_en":"Sweet Red Vermouth","group":"liqueur","aliases":["甜味美思","红味美思","Sweet Vermouth","Rosso Vermouth"]}
+{"_id":"dry-vermouth","id":"dry-vermouth","name_zh":"干味美思","name_en":"Dry Vermouth","group":"liqueur","aliases":["干型味美思"]}
+{"_id":"campari","id":"campari","name_zh":"金巴利","name_en":"Campari","group":"liqueur","aliases":["Bitter Campari","金巴利苦酒"]}
+{"_id":"triple-sec","id":"triple-sec","name_zh":"橙味利口酒","name_en":"Triple Sec","group":"liqueur","aliases":["君度","君度橙酒","Cointreau","橙味力娇酒","橙酒"]}
+{"_id":"coffee-liqueur","id":"coffee-liqueur","name_zh":"咖啡利口酒","name_en":"Coffee Liqueur","group":"liqueur","aliases":["咖啡力娇酒","甘露","甘露咖啡酒","Kahlua","Kahlúa"]}
+{"_id":"drambuie","id":"drambuie","name_zh":"杜林标利口酒","name_en":"Drambuie","group":"liqueur","aliases":["杜林标","杜林标蜂蜜威士忌利口酒"]}
+{"_id":"absinthe","id":"absinthe","name_zh":"苦艾酒","name_en":"Absinthe","group":"liqueur","aliases":["艾碧斯"]}
+{"_id":"fernet","id":"fernet","name_zh":"菲奈特苦酒","name_en":"Fernet","group":"liqueur","aliases":["Fernet Branca","Fernet-Branca","菲奈特"]}
+{"_id":"aperol","id":"aperol","name_zh":"阿佩罗","name_en":"Aperol","group":"liqueur","aliases":["阿佩罗开胃酒"]}
+{"_id":"maraschino","id":"maraschino","name_zh":"黑樱桃利口酒","name_en":"Maraschino Liqueur","group":"liqueur","aliases":["Maraschino","Maraschino Luxardo","Luxardo Maraschino","马拉斯奇诺利口酒"]}
+{"_id":"violet-liqueur","id":"violet-liqueur","name_zh":"紫罗兰利口酒","name_en":"Crème de Violette","group":"liqueur","aliases":["Creme de Violette","紫罗兰力娇酒"]}
+{"_id":"simple-syrup","id":"simple-syrup","name_zh":"单糖浆","name_en":"Simple Syrup","group":"syrup","aliases":["糖浆","糖水","Sugar Syrup","Gomme Syrup","Gum Syrup","单糖糖浆"]}
+{"_id":"honey-syrup","id":"honey-syrup","name_zh":"蜂蜜糖浆","name_en":"Honey Syrup","group":"syrup","aliases":["蜂蜜糖水"]}
+{"_id":"sugar","id":"sugar","name_zh":"细砂糖","name_en":"Superfine Sugar","group":"syrup","aliases":["白糖","白砂糖","蔗糖","White Cane Sugar","Caster Sugar","Sugar"]}
+{"_id":"sugar-cube","id":"sugar-cube","name_zh":"方糖","name_en":"Sugar Cube","group":"syrup","aliases":["Cube Sugar","糖块"]}
+{"_id":"raspberry-syrup","id":"raspberry-syrup","name_zh":"覆盆子糖浆","name_en":"Raspberry Syrup","group":"syrup","aliases":["树莓糖浆"]}
+{"_id":"agave-nectar","id":"agave-nectar","name_zh":"龙舌兰糖浆","name_en":"Agave Nectar","group":"syrup","aliases":["Agave Syrup","龙舌兰蜜"]}
+{"_id":"lemon-juice","id":"lemon-juice","name_zh":"柠檬汁","name_en":"Lemon Juice","group":"citrus","aliases":["柠檬","黄柠檬","黄柠檬汁","鲜榨柠檬汁","Lemon","Fresh Lemon Juice","Freshly Squeezed Lemon Juice"]}
+{"_id":"lime-juice","id":"lime-juice","name_zh":"青柠汁","name_en":"Lime Juice","group":"citrus","aliases":["青柠","莱姆","莱姆汁","鲜榨青柠汁","Lime","Fresh Lime Juice","Freshly Squeezed Lime Juice"]}
+{"_id":"orange-juice","id":"orange-juice","name_zh":"橙汁","name_en":"Orange Juice","group":"citrus","aliases":["鲜榨橙汁","Fresh Orange Juice","Freshly Squeezed Orange Juice"]}
+{"_id":"cranberry-juice","id":"cranberry-juice","name_zh":"蔓越莓汁","name_en":"Cranberry Juice","group":"citrus","aliases":["蔓越莓果汁"]}
+{"_id":"pineapple-juice","id":"pineapple-juice","name_zh":"菠萝汁","name_en":"Pineapple Juice","group":"citrus","aliases":["凤梨汁","Fresh Pineapple Juice"]}
+{"_id":"peach-puree","id":"peach-puree","name_zh":"白桃果泥","name_en":"White Peach Puree","group":"citrus","aliases":["白桃泥","Peach Puree","White Peach Purée"]}
+{"_id":"sugarcane-juice","id":"sugarcane-juice","name_zh":"甘蔗汁","name_en":"Sugar Cane Juice","group":"citrus","aliases":["Sugarcane Juice"]}
+{"_id":"soda-water","id":"soda-water","name_zh":"苏打水","name_en":"Soda Water","group":"mixer","aliases":["气泡水","苏打","Soda","Club Soda","Sparkling Water"]}
+{"_id":"ginger-beer","id":"ginger-beer","name_zh":"姜汁啤酒","name_en":"Ginger Beer","group":"mixer","aliases":["姜啤"]}
+{"_id":"ginger-ale","id":"ginger-ale","name_zh":"干姜水","name_en":"Ginger Ale","group":"mixer","aliases":["姜汁汽水","姜汁苏打"]}
+{"_id":"grapefruit-soda","id":"grapefruit-soda","name_zh":"粉红西柚汽水","name_en":"Pink Grapefruit Soda","group":"mixer","aliases":["西柚汽水","Grapefruit Soda"]}
+{"_id":"cola","id":"cola","name_zh":"可乐","name_en":"Cola","group":"mixer","aliases":["Coca Cola","Coca-Cola"]}
+{"_id":"champagne","id":"champagne","name_zh":"香槟","name_en":"Champagne","group":"mixer","aliases":["香槟酒"]}
+{"_id":"prosecco","id":"prosecco","name_zh":"普罗塞克起泡酒","name_en":"Prosecco","group":"mixer","aliases":["普罗塞克","Prosecco Wine"]}
+{"_id":"red-wine","id":"red-wine","name_zh":"红葡萄酒","name_en":"Red Wine","group":"mixer","aliases":["红酒","Shiraz","Malbec"]}
+{"_id":"cream","id":"cream","name_zh":"鲜奶油","name_en":"Cream","group":"mixer","aliases":["淡奶油","Heavy Cream","Fresh Cream"]}
+{"_id":"coconut-cream","id":"coconut-cream","name_zh":"椰浆","name_en":"Coconut Cream","group":"mixer","aliases":["椰子奶油","椰奶油"]}
+{"_id":"egg-white","id":"egg-white","name_zh":"蛋清","name_en":"Egg White","group":"mixer","aliases":["鸡蛋清","蛋白","Raw Egg White","Raw whole Egg White"]}
+{"_id":"orange-flower-water","id":"orange-flower-water","name_zh":"橙花水","name_en":"Orange Flower Water","group":"mixer","aliases":["橙花露","Orange Blossom Water"]}
+{"_id":"vanilla-extract","id":"vanilla-extract","name_zh":"香草精","name_en":"Vanilla Extract","group":"mixer","aliases":["香草提取液"]}
+{"_id":"angostura","id":"angostura","name_zh":"安格式苦精","name_en":"Angostura Bitters","group":"mixer","aliases":["安格斯特拉苦精","Angostura Bitter","安格仕苦精"]}
+{"_id":"peychaud","id":"peychaud","name_zh":"佩肖苦精","name_en":"Peychaud’s Bitters","group":"mixer","aliases":["Peychaud's Bitters","Peychaud Bitters","佩氏苦精"]}
+{"_id":"amargo","id":"amargo","name_zh":"阿玛戈苦精","name_en":"Amargo Bitters","group":"mixer","aliases":["Amargo","秘鲁苦精"]}
+{"_id":"espresso","id":"espresso","name_zh":"意式浓缩咖啡","name_en":"Espresso","group":"mixer","aliases":["浓缩咖啡","Strong Espresso"]}
+{"_id":"salt","id":"salt","name_zh":"盐","name_en":"Salt","group":"mixer","aliases":["食盐","海盐"]}
+{"_id":"water","id":"water","name_zh":"饮用水","name_en":"Plain Water","group":"mixer","aliases":["清水","Water"]}
+{"_id":"orange-peel","id":"orange-peel","name_zh":"橙皮","name_en":"Orange Zest","group":"garnish","aliases":["橙皮卷","Orange Peel","Orange Twist"]}
+{"_id":"lemon-peel","id":"lemon-peel","name_zh":"柠檬皮","name_en":"Lemon Zest","group":"garnish","aliases":["柠檬皮卷","Lemon Peel","Lemon Twist"]}
+{"_id":"orange-slice","id":"orange-slice","name_zh":"橙片","name_en":"Orange Slice","group":"garnish","aliases":["橙切片","Half Orange Slice"]}
+{"_id":"lemon-slice","id":"lemon-slice","name_zh":"柠檬片","name_en":"Lemon Slice","group":"garnish","aliases":["黄柠檬片"]}
+{"_id":"lime-slice","id":"lime-slice","name_zh":"青柠片","name_en":"Lime Slice","group":"garnish","aliases":["莱姆片"]}
+{"_id":"lime-wedge","id":"lime-wedge","name_zh":"青柠角","name_en":"Lime Wedge","group":"garnish","aliases":["莱姆角"]}
+{"_id":"cocktail-cherry","id":"cocktail-cherry","name_zh":"鸡尾酒樱桃","name_en":"Maraschino Cherry","group":"garnish","aliases":["装饰樱桃","红樱桃","Cocktail Cherry"]}
+{"_id":"mint","id":"mint","name_zh":"薄荷","name_en":"Mint","group":"garnish","aliases":["薄荷叶","薄荷枝","Mint Leaves","Mint Sprigs","Mint Sprig"]}
+{"_id":"olive","id":"olive","name_zh":"绿橄榄","name_en":"Green Olive","group":"garnish","aliases":["橄榄","Olive","Green Olives"]}
+{"_id":"salt-rim","id":"salt-rim","name_zh":"盐边","name_en":"Salt Rim","group":"garnish","aliases":["杯口盐边","Half Salt Rim"]}
+{"_id":"coffee-beans","id":"coffee-beans","name_zh":"咖啡豆","name_en":"Coffee Beans","group":"garnish","aliases":["Coffee Bean"]}
+{"_id":"pineapple-slice","id":"pineapple-slice","name_zh":"菠萝片","name_en":"Pineapple Slice","group":"garnish","aliases":["凤梨片"]}
+{"_id":"raspberry","id":"raspberry","name_zh":"覆盆子","name_en":"Raspberry","group":"garnish","aliases":["树莓","Raspberries","Fresh Raspberries"]}
+{"_id":"cacao-brown","id":"cacao-brown","name_zh":"棕可可利口酒","name_en":"Brown Crème de Cacao","group":"liqueur","aliases":[]}
+{"_id":"apricot-brandy","id":"apricot-brandy","name_zh":"杏子白兰地利口酒","name_en":"Apricot Brandy","group":"liqueur","aliases":[]}
+{"_id":"calvados","id":"calvados","name_zh":"卡尔瓦多斯苹果白兰地","name_en":"Calvados","group":"base","aliases":[]}
+{"_id":"brandy","id":"brandy","name_zh":"白兰地","name_en":"Brandy","group":"base","aliases":[]}
+{"_id":"orange-curacao","id":"orange-curacao","name_zh":"库拉索橙酒","name_en":"Orange Curaçao","group":"liqueur","aliases":[]}
+{"_id":"aromatic-bitters","id":"aromatic-bitters","name_zh":"芳香苦精","name_en":"Aromatic Bitters","group":"mixer","aliases":[]}
+{"_id":"old-tom-gin","id":"old-tom-gin","name_zh":"老汤姆金酒","name_en":"Old Tom Gin","group":"base","aliases":[]}
+{"_id":"orange-bitters","id":"orange-bitters","name_zh":"橙味苦精","name_en":"Orange Bitters","group":"mixer","aliases":[]}
+{"_id":"green-chartreuse","id":"green-chartreuse","name_zh":"绿夏特勒兹利口酒","name_en":"Green Chartreuse","group":"liqueur","aliases":[]}
+{"_id":"grenadine","id":"grenadine","name_zh":"红石榴糖浆","name_en":"Grenadine Syrup","group":"syrup","aliases":[]}
+{"_id":"tawny-port","id":"tawny-port","name_zh":"茶色波特酒","name_en":"Tawny Port Wine","group":"mixer","aliases":[]}
+{"_id":"egg-yolk","id":"egg-yolk","name_zh":"蛋黄","name_en":"Egg Yolk","group":"mixer","aliases":[]}
+{"_id":"cherry-liqueur","id":"cherry-liqueur","name_zh":"卢萨朵樱桃利口酒","name_en":"Luxardo Cherry Liqueur","group":"liqueur","aliases":[]}
+{"_id":"white-mint-liqueur","id":"white-mint-liqueur","name_zh":"白薄荷利口酒","name_en":"White Crème de Menthe","group":"liqueur","aliases":[]}
+{"_id":"benedictine","id":"benedictine","name_zh":"廊酒","name_en":"Bénédictine","group":"liqueur","aliases":[]}
+{"_id":"tomato-juice","id":"tomato-juice","name_zh":"番茄汁","name_en":"Tomato Juice","group":"citrus","aliases":[]}
+{"_id":"worcestershire","id":"worcestershire","name_zh":"伍斯特酱","name_en":"Worcestershire Sauce","group":"mixer","aliases":[]}
+{"_id":"tabasco","id":"tabasco","name_zh":"塔巴斯科辣椒酱","name_en":"Tabasco","group":"mixer","aliases":[]}
+{"_id":"celery-salt","id":"celery-salt","name_zh":"芹菜盐","name_en":"Celery Salt","group":"mixer","aliases":[]}
+{"_id":"black-pepper","id":"black-pepper","name_zh":"黑胡椒","name_en":"Black Pepper","group":"mixer","aliases":[]}
+{"_id":"cachaca","id":"cachaca","name_zh":"卡沙萨","name_en":"Cachaça","group":"base","aliases":[]}
+{"_id":"whole-lime","id":"whole-lime","name_zh":"新鲜青柠","name_en":"Fresh Whole Lime","group":"citrus","aliases":[]}
+{"_id":"grand-marnier","id":"grand-marnier","name_zh":"柑曼怡橙酒","name_en":"Grand Marnier","group":"liqueur","aliases":[]}
+{"_id":"lillet-blanc","id":"lillet-blanc","name_zh":"丽蕾白开胃酒","name_en":"Lillet Blanc","group":"liqueur","aliases":[]}
+{"_id":"amaretto","id":"amaretto","name_zh":"杏仁利口酒","name_en":"Amaretto","group":"liqueur","aliases":[]}
+{"_id":"cacao-white","id":"cacao-white","name_zh":"白可可利口酒","name_en":"White Crème de Cacao","group":"liqueur","aliases":[]}
+{"_id":"green-mint-liqueur","id":"green-mint-liqueur","name_zh":"绿薄荷利口酒","name_en":"Green Crème de Menthe","group":"liqueur","aliases":[]}
+{"_id":"grapefruit-juice","id":"grapefruit-juice","name_zh":"西柚汁","name_en":"Grapefruit Juice","group":"citrus","aliases":[]}
+{"_id":"irish-whiskey","id":"irish-whiskey","name_zh":"爱尔兰威士忌","name_en":"Irish Whiskey","group":"base","aliases":[]}
+{"_id":"hot-coffee","id":"hot-coffee","name_zh":"热黑咖啡","name_en":"Hot Black Coffee","group":"mixer","aliases":[]}
+{"_id":"white-wine","id":"white-wine","name_zh":"干白葡萄酒","name_en":"Dry White Wine","group":"mixer","aliases":[]}
+{"_id":"cassis","id":"cassis","name_zh":"黑醋栗利口酒","name_en":"Crème de Cassis","group":"liqueur","aliases":[]}
+{"_id":"amber-jamaican-rum","id":"amber-jamaican-rum","name_zh":"牙买加琥珀朗姆酒","name_en":"Amber Jamaican Rum","group":"base","aliases":[]}
+{"_id":"martinique-molasses-rum","id":"martinique-molasses-rum","name_zh":"马提尼克糖蜜朗姆酒","name_en":"Martinique Molasses Rum","group":"base","aliases":[]}
+{"_id":"orgeat","id":"orgeat","name_zh":"杏仁糖浆","name_en":"Orgeat Syrup","group":"syrup","aliases":[]}
+{"_id":"powdered-sugar","id":"powdered-sugar","name_zh":"糖粉","name_en":"Powdered Sugar","group":"syrup","aliases":[]}
+{"_id":"cynar","id":"cynar","name_zh":"西纳尔朝鲜蓟苦酒","name_en":"Cynar","group":"liqueur","aliases":[]}
+{"_id":"peach-schnapps","id":"peach-schnapps","name_zh":"桃子利口酒","name_en":"Peach Schnapps","group":"liqueur","aliases":[]}
+{"_id":"jamaican-dark-rum","id":"jamaican-dark-rum","name_zh":"牙买加深色朗姆酒","name_en":"Jamaican Dark Rum","group":"base","aliases":[]}
+{"_id":"puerto-rican-gold-rum","id":"puerto-rican-gold-rum","name_zh":"波多黎各金朗姆酒","name_en":"Gold Puerto Rican Rum","group":"base","aliases":[]}
+{"_id":"demerara-rum","id":"demerara-rum","name_zh":"德梅拉拉朗姆酒","name_en":"Demerara Rum","group":"base","aliases":[]}
+{"_id":"falernum","id":"falernum","name_zh":"法勒纳姆香料糖酒","name_en":"Falernum","group":"liqueur","aliases":[]}
+{"_id":"donns-mix","id":"donns-mix","name_zh":"唐氏混合汁","name_en":"Donn’s Mix","group":"mixer","aliases":[]}
+{"_id":"pernod","id":"pernod","name_zh":"保乐茴香酒","name_en":"Pernod","group":"liqueur","aliases":[]}
+{"_id":"blackberry-liqueur","id":"blackberry-liqueur","name_zh":"黑莓利口酒","name_en":"Crème de Mûre","group":"liqueur","aliases":[]}
+{"_id":"cuban-aguardiente","id":"cuban-aguardiente","name_zh":"古巴甘蔗烧酒","name_en":"Cuban Aguardiente","group":"base","aliases":[]}
+{"_id":"raw-honey","id":"raw-honey","name_zh":"生蜂蜜","name_en":"Raw Honey","group":"syrup","aliases":[]}
+{"_id":"gold-jamaican-rum","id":"gold-jamaican-rum","name_zh":"牙买加金朗姆酒","name_en":"Gold Jamaican Rum","group":"base","aliases":[]}
+{"_id":"passion-fruit-syrup","id":"passion-fruit-syrup","name_zh":"百香果糖浆","name_en":"Passion Fruit Syrup","group":"syrup","aliases":[]}
+{"_id":"raspberry-liqueur","id":"raspberry-liqueur","name_zh":"覆盆子利口酒","name_en":"Raspberry Liqueur","group":"liqueur","aliases":[]}
+{"_id":"basil","id":"basil","name_zh":"意大利罗勒叶","name_en":"Italian Basil Leaves","group":"garnish","aliases":[]}
+{"_id":"mezcal","id":"mezcal","name_zh":"梅斯卡尔","name_en":"Mezcal","group":"base","aliases":[]}
+{"_id":"jamaican-overproof-white-rum","id":"jamaican-overproof-white-rum","name_zh":"牙买加高度白朗姆酒","name_en":"Jamaican Overproof White Rum","group":"base","aliases":[]}
+{"_id":"blackstrap-rum","id":"blackstrap-rum","name_zh":"黑糖蜜朗姆酒","name_en":"Blackstrap Rum","group":"base","aliases":[]}
+{"_id":"demerara-syrup","id":"demerara-syrup","name_zh":"德梅拉拉糖浆","name_en":"Demerara Sugar Syrup","group":"syrup","aliases":[]}
+{"_id":"peach-brandy","id":"peach-brandy","name_zh":"桃子白兰地利口酒","name_en":"Peach Brandy","group":"liqueur","aliases":[]}
+{"_id":"honey-mix","id":"honey-mix","name_zh":"蜂蜜混合液","name_en":"Honey Mix","group":"syrup","aliases":[]}
+{"_id":"pineapple-chunks","id":"pineapple-chunks","name_zh":"菠萝块","name_en":"Pineapple Chunks","group":"citrus","aliases":[]}
+{"_id":"yellow-chartreuse","id":"yellow-chartreuse","name_zh":"黄夏特勒兹利口酒","name_en":"Yellow Chartreuse","group":"liqueur","aliases":[]}
+{"_id":"aged-rum","id":"aged-rum","name_zh":"陈年朗姆酒","name_en":"Aged Rum","group":"base","aliases":[]}
+{"_id":"amaro-nonino","id":"amaro-nonino","name_zh":"诺尼诺阿玛罗利口酒","name_en":"Amaro Nonino","group":"liqueur","aliases":[]}
+{"_id":"islay-whisky","id":"islay-whisky","name_zh":"拉加维林16年艾雷岛威士忌","name_en":"Lagavulin 16 Year Old","group":"base","aliases":[]}
+{"_id":"fresh-ginger","id":"fresh-ginger","name_zh":"新鲜生姜","name_en":"Fresh Ginger","group":"mixer","aliases":[]}
+{"_id":"cloves","id":"cloves","name_zh":"丁香","name_en":"Cloves","group":"garnish","aliases":[]}
+{"_id":"vanilla-vodka","id":"vanilla-vodka","name_zh":"香草伏特加","name_en":"Vanilla Vodka","group":"base","aliases":[]}
+{"_id":"passion-fruit-liqueur","id":"passion-fruit-liqueur","name_zh":"百香果利口酒","name_en":"Passion Fruit Liqueur","group":"liqueur","aliases":[]}
+{"_id":"passion-fruit-puree","id":"passion-fruit-puree","name_zh":"百香果果泥","name_en":"Passion Fruit Purée","group":"citrus","aliases":[]}
+{"_id":"vanilla-sugar","id":"vanilla-sugar","name_zh":"香草糖","name_en":"Vanilla Sugar","group":"syrup","aliases":[]}
+{"_id":"sparkling-wine","id":"sparkling-wine","name_zh":"起泡葡萄酒","name_en":"Sparkling Wine","group":"mixer","aliases":[]}
+{"_id":"amontillado-sherry","id":"amontillado-sherry","name_zh":"阿蒙提拉多雪莉酒","name_en":"Amontillado Sherry","group":"mixer","aliases":[]}
+{"_id":"palo-cortado-sherry","id":"palo-cortado-sherry","name_zh":"帕罗科尔塔多雪莉酒","name_en":"Palo Cortado Sherry","group":"mixer","aliases":[]}
+{"_id":"elderflower-cordial","id":"elderflower-cordial","name_zh":"接骨木花糖露","name_en":"Elderflower Cordial","group":"syrup","aliases":[]}
+{"_id":"red-chili","id":"red-chili","name_zh":"红辣椒","name_en":"Red Chili Pepper","group":"garnish","aliases":[]}
+{"_id":"martinique-agricole-rum","id":"martinique-agricole-rum","name_zh":"马提尼克农业朗姆酒","name_en":"Martinique Agricole Rhum","group":"base","aliases":[]}
+{"_id":"allspice-dram","id":"allspice-dram","name_zh":"圣伊丽莎白多香果利口酒","name_en":"Saint Elizabeth Allspice Dram","group":"liqueur","aliases":[]}
+{"_id":"white-grappa","id":"white-grappa","name_zh":"白格拉帕","name_en":"White Grappa","group":"base","aliases":[]}
+{"_id":"chamomile-cordial","id":"chamomile-cordial","name_zh":"洋甘菊糖露","name_en":"Chamomile Cordial","group":"syrup","aliases":[]}
+{"_id":"chamomile-honey-mix","id":"chamomile-honey-mix","name_zh":"洋甘菊蜂蜜混合液","name_en":"Chamomile Honey Mix","group":"syrup","aliases":[]}
+{"_id":"havana-profundo","id":"havana-profundo","name_zh":"哈瓦那俱乐部Profundo朗姆酒","name_en":"Havana Club Profundo Rum","group":"base","aliases":[]}
+{"_id":"havana-smoky","id":"havana-smoky","name_zh":"哈瓦那俱乐部Smoky朗姆酒","name_en":"Havana Club Smoky Rum","group":"base","aliases":[]}
+{"_id":"frangelico","id":"frangelico","name_zh":"榛果利口酒","name_en":"Frangelico","group":"liqueur","aliases":[]}
+{"_id":"nutmeg","id":"nutmeg","name_zh":"肉豆蔻","name_en":"Nutmeg","group":"garnish","aliases":[]}
+{"_id":"sugar-rim","id":"sugar-rim","name_zh":"糖边","name_en":"Sugar Rim","group":"garnish","aliases":[]}
+{"_id":"celery","id":"celery","name_zh":"芹菜","name_en":"Celery","group":"garnish","aliases":[]}
+{"_id":"lemon-wedge","id":"lemon-wedge","name_zh":"柠檬角","name_en":"Lemon Wedge","group":"garnish","aliases":[]}
+{"_id":"orange-wedge","id":"orange-wedge","name_zh":"橙角","name_en":"Orange Wedge","group":"garnish","aliases":[]}
+{"_id":"lime-peel","id":"lime-peel","name_zh":"青柠皮","name_en":"Lime Peel","group":"garnish","aliases":[]}
+{"_id":"blackberry","id":"blackberry","name_zh":"黑莓","name_en":"Blackberry","group":"garnish","aliases":[]}
+{"_id":"passion-fruit","id":"passion-fruit","name_zh":"新鲜百香果","name_en":"Fresh Passion Fruit","group":"garnish","aliases":[]}
+{"_id":"candied-ginger","id":"candied-ginger","name_zh":"糖渍姜片","name_en":"Candied Ginger","group":"garnish","aliases":[]}
+{"_id":"mixed-berries","id":"mixed-berries","name_zh":"新鲜浆果","name_en":"Fresh Mixed Berries","group":"garnish","aliases":[]}
+{"_id":"white-grapes","id":"white-grapes","name_zh":"白葡萄","name_en":"White Grapes","group":"garnish","aliases":[]}
+{"_id":"dried-pineapple","id":"dried-pineapple","name_zh":"菠萝干片","name_en":"Dehydrated Pineapple Slice","group":"garnish","aliases":[]}
+{"_id":"citrus-garnish","id":"citrus-garnish","name_zh":"柑橘装饰","name_en":"Citrus Garnish","group":"garnish","aliases":[]}

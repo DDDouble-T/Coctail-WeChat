@@ -1,6 +1,6 @@
 .detail { padding-bottom: 44rpx; }
 .recipe-hero { border: 2rpx solid #e5dac6; border-radius: 32rpx; background: #f1eadb; display: flex; align-items: center; flex-direction: column; padding: 22rpx 20rpx 19rpx; }
-.recipe-hero image { width: 360rpx; height: 340rpx; }
+.recipe-hero cocktail-image { width: 360rpx; height: 340rpx; }
 .hero-caption { font-size: 17rpx; letter-spacing: 3rpx; color: #aa9478; }
 .hero-note { color: #a89376; font-size: 21rpx; }
 .title-row { display: flex; align-items: center; justify-content: space-between; margin: 29rpx 0 18rpx; gap: 15rpx; }
@@ -32,5 +32,3 @@
 .cat-note image { height: 118rpx; width: 118rpx; flex-shrink: 0; border-radius: 50%; mix-blend-mode: multiply; }
 .cat-note text { font-size: 23rpx; font-weight: 600; color: #9a724e; }
 .cat-note view view { color: #a38b70; font-size: 23rpx; margin-top: 5rpx; }
-.source { font-size: 22rpx; color: #a68d72; text-align: left; }
-.source text { display: block; font-size: 19rpx; color: #bba78d; }

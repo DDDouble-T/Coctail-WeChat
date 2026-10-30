@@ -1,4 +1,5 @@
 import express, { type ErrorRequestHandler } from 'express';
+import path from 'node:path';
 import { rateLimit } from 'express-rate-limit';
 import type { CatalogRepository } from './catalog';
 
@@ -7,9 +8,10 @@ interface AppOptions {
   trustProxyHops?: number;
   rateLimitMax?: number;
   onError?: (error: unknown) => void;
+  mediaRoot?: string;
 }
 
-export function createApp({ repository, trustProxyHops = 0, rateLimitMax = 120, onError = console.error }: AppOptions) {
+export function createApp({ repository, trustProxyHops = 0, rateLimitMax = 120, onError = console.error, mediaRoot = path.resolve('data/iba-cocktails') }: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
   app.set('trust proxy', trustProxyHops === 0 ? false : trustProxyHops);
@@ -25,6 +27,14 @@ export function createApp({ repository, trustProxyHops = 0, rateLimitMax = 120, 
     next();
   });
   app.use(express.json({ limit: '8kb' }));
+
+  // 只开放这两个图片目录，配方抓取快照和来源清单不作为静态文件暴露。
+  for (const kind of ['crayon', 'originals']) {
+    app.use(`/media/cocktails/${kind}`, express.static(path.join(mediaRoot, kind), {
+      dotfiles: 'deny', index: false, redirect: false, maxAge: '1d',
+      setHeaders(response) { response.setHeader('Cache-Control', 'public, max-age=86400'); },
+    }));
+  }
 
   app.get('/healthz', (_request, response) => {
     response.json({ status: 'ok', mode: repository.mode });
