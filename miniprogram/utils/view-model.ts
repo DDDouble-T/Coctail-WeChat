@@ -25,7 +25,7 @@ export function toCard(recipe: Cocktail, owned: readonly string[], matching = fa
   const match = result || matchCocktails([recipe], owned)[0];
   return {
     id: recipe.id, name: recipe.name_zh, english: recipe.name_en,
-    image: recipe.image_url, glass: recipe.glass, style: styleLabels[recipe.style],
+    image: recipe.image_original_url, glass: recipe.glass, style: styleLabels[recipe.style],
     difficulty: { easy: '轻松入门', medium: '进阶一点', advanced: '挑战一下' }[recipe.difficulty],
     essential: match.total_essential, matched: match.matched_essential,
     missing: match.missing_ingredients.map((item) => item.name).join('、'),

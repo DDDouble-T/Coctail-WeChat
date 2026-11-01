@@ -22,15 +22,14 @@
 .invite-arrow { color: #8d9671; font-size: 33rpx; }
 .menu-en { font-size: 17rpx; letter-spacing: 2rpx; color: #b19b84; margin-left: 16rpx; }
 .search { display: flex; align-items: center; gap: 15rpx; margin-top: 24rpx; background: #f6eddf; border: 2rpx solid #eadecc; border-radius: 20rpx; padding: 15rpx 22rpx; }
-.search-icon { position: relative; width: 18rpx; height: 18rpx; flex: 0 0 18rpx; margin: 0 7rpx 3rpx 2rpx; border: 3rpx solid #a78b70; border-radius: 50%; }
-.search-icon::after { content: ''; position: absolute; right: -9rpx; bottom: -5rpx; width: 11rpx; height: 3rpx; border-radius: 3rpx; background: #a78b70; transform: rotate(45deg); transform-origin: left center; }
+.search-icon { width: 36rpx; height: 36rpx; flex: 0 0 36rpx; }
 .search input { flex: 1; height: 42rpx; font-size: 25rpx; min-width: 0; }
 .search button { font-size: 34rpx; line-height: 1; padding: 0 8rpx; color: #a78b70; }
 .search-placeholder { color: #b6a18b; }
 .category-sticky { position: sticky; top: 0; z-index: 3; margin-top: 10px; background: #fff6ec; padding: 0 0 16rpx; }
 .category-scroll { white-space: nowrap; width: 100%; }
-.categories { display: inline-flex; gap: 13rpx; padding: 0 36rpx; }
-.category { min-width: 111rpx; padding: 14rpx 21rpx; border-radius: 18rpx; color: #9b8774; font-size: 25rpx; border: 2rpx solid transparent; }
+.categories { display: inline-flex; gap: 8rpx; padding: 0 36rpx; }
+.category { min-width: 111rpx; padding: 14rpx 16rpx; border-radius: 18rpx; color: #9b8774; font-size: 25rpx; border: 2rpx solid transparent; }
 .category text { display: block; font-size: 16rpx; margin-top: 2rpx; }
 .category.active { background: #edb181; color: #63432e; border-color: #dda06d; }
 .menu-list { padding-top: 0; }

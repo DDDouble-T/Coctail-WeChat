@@ -1,6 +1,6 @@
 <view class="page detail" wx:if="{{found && recipe}}">
   <view wx:if="{{notice}}" class="notice" bindtap="sync" role="button">{{notice}}</view>
-  <view class="recipe-hero"><view class="hero-caption">A LITTLE RECIPE, A LITTLE JOY</view><cocktail-image path="{{recipe.image_url}}" version="{{version}}"/><text class="hero-note">猫咪店长的调酒笔记 ✦</text></view>
+  <view class="recipe-hero"><view class="hero-caption">A LITTLE RECIPE, A LITTLE JOY</view><cocktail-image path="{{recipe.image_original_url}}" version="{{version}}"/><text class="hero-note">猫咪店长的调酒笔记 ✦</text></view>
   <view class="title-row"><view><view class="recipe-name">{{recipe.name_zh}}</view><view class="recipe-english">{{recipe.name_en}}</view></view><button class="favorite-button {{favorite ? 'saved' : ''}}" bindtap="favorite" aria-label="{{favorite ? '取消收藏' : '收藏'}}">{{favorite ? '♥' : '♡'}}</button></view>
   <view class="recipe-tags"><text class="pill">{{iba}}</text><text class="pill">{{recipe.glass}}</text><text class="pill">{{style}}</text></view>
   <view class="taste"><text>这一杯的性格</text><view>{{recipe.taste}}</view></view>

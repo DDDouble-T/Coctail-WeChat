@@ -12,7 +12,7 @@ const imagePath = snapshot.cocktails[0].image_url;
 const cacheKey = 'cat-tavern:v2:catalog:paw-inn-d9gixxkg3f894407e:paw-inn';
 
 // 每个场景独立装载小程序模块，模拟应用重启及微信 API，而不共享服务单例。
-function client(wx: WxMock, page?: (options: any) => void, logger: Pick<Console, 'error'> = { error() {} }) {
+function client(wx: WxMock, page?: (options: any) => void, logger: Pick<Console, 'error'> = { error() {} }, component?: (options: any) => void) {
   const modules = new Map<string, { exports: any }>();
   function load(relative: string, directory = root): any {
     const filename = path.resolve(directory, relative.endsWith('.ts') ? relative : `${relative}.ts`);
@@ -23,8 +23,8 @@ function client(wx: WxMock, page?: (options: any) => void, logger: Pick<Console,
     const compiled = ts.transpileModule(readFileSync(filename, 'utf8'), {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
     }).outputText;
-    const execute = new Function('require', 'module', 'exports', 'wx', 'Page', 'console', compiled);
-    execute((name: string) => load(name, path.dirname(filename)), module, module.exports, wx, page, logger);
+    const execute = new Function('require', 'module', 'exports', 'wx', 'Page', 'console', 'Component', compiled);
+    execute((name: string) => load(name, path.dirname(filename)), module, module.exports, wx, page, logger, component);
     return module.exports;
   }
   return (file: string) => load(file);
@@ -41,6 +41,98 @@ function catalogMock(cached?: unknown) {
   };
   return { wx, storage, requests };
 }
+
+test('卡片成功导航后才上报点击，失败不重试且不影响浏览', async () => {
+  const { wx, requests } = catalogMock();
+  let navigation: any;
+  wx.navigateTo = (options: any) => { navigation = options; };
+  const service = client(wx)('miniprogram/services/clicks');
+  service.openRecipe(snapshot.cocktails[0].id);
+  assert.equal(navigation.url, `/pages/detail/index?id=${snapshot.cocktails[0].id}`);
+  assert.equal(requests.length, 0);
+  navigation.success();
+  await new Promise((done) => setImmediate(done));
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].method, 'POST');
+  assert.equal(requests[0].path, `/api/cocktails/${snapshot.cocktails[0].id}/clicks`);
+  assert.equal(requests[0].header['X-WX-SERVICE'], 'paw-inn');
+  let failures = 0;
+  wx.cloud.callContainer = async () => { failures++; throw new Error('offline'); };
+  service.openRecipe(snapshot.cocktails[0].id);
+  navigation.success();
+  await new Promise((done) => setImmediate(done));
+  assert.equal(failures, 1);
+  wx.cloud = undefined;
+  service.openRecipe(snapshot.cocktails[0].id);
+  assert.doesNotThrow(() => navigation.success());
+});
+
+test('普通卡片和今日特调都接入点击统计，页面重绘不会上报', async () => {
+  const { wx, requests } = catalogMock(snapshot);
+  const navigations: any[] = [];
+  wx.navigateTo = (options: any) => { navigations.push(options); options.success(); };
+  let page: any;
+  let component: any;
+  const load = client(wx, (options) => {
+    page = { ...options, data: structuredClone(options.data), setData(update: unknown) { Object.assign(this.data, update); } };
+  }, undefined, (options) => {
+    component = { data: { card: { id: snapshot.cocktails[0].id } }, ...options.methods };
+  });
+  load('miniprogram/components/recipe-card/index');
+  load('miniprogram/pages/home/index');
+  page.render();
+  page.render();
+  assert.equal(requests.length, 0);
+  component.open();
+  page.openDaily();
+  await new Promise((done) => setImmediate(done));
+  assert.equal(navigations.length, 2);
+  assert.equal(requests.length, 2);
+  assert.ok(requests.every((entry) => entry.method === 'POST' && entry.path.endsWith('/clicks')));
+});
+
+test('首页搜索从全部分类开始，分类 tab 展示各自的命中结果', () => {
+  const { wx } = catalogMock(snapshot);
+  let page: any;
+  client(wx, (options) => {
+    page = { ...options, data: structuredClone(options.data), setData(update: unknown) { Object.assign(this.data, update); } };
+  })('miniprogram/pages/home/index');
+  const select = (id: string) => page.selectFamily({ currentTarget: { dataset: { id } } });
+  select('sour');
+  assert.ok(page.data.cards.length > 0);
+  assert.ok(page.data.cards.every((card: any) => snapshot.cocktails.find((recipe) => recipe.id === card.id)?.family === 'sour'));
+  page.search({ detail: { value: 'Negroni' } });
+  assert.equal(page.data.selectedFamily, 'all');
+  assert.deepEqual(page.data.cards.map((card: any) => card.id), ['negroni']);
+  select('fizz');
+  assert.equal(page.data.cards.length, 0);
+  assert.equal(page.data.query, 'Negroni');
+  select(snapshot.cocktails.find((recipe) => recipe.id === 'negroni')!.family);
+  assert.deepEqual(page.data.cards.map((card: any) => card.id), ['negroni']);
+  page.search({ detail: { value: '金酒' } });
+  assert.equal(page.data.selectedFamily, 'all');
+  const allSearchIds = page.data.cards.map((card: any) => card.id);
+  assert.ok(allSearchIds.includes('negroni'));
+  select('fizz');
+  const fizzSearchIds = allSearchIds.filter((id: string) => snapshot.cocktails.find((recipe) => recipe.id === id)?.family === 'fizz');
+  assert.ok(fizzSearchIds.length > 0);
+  assert.ok(fizzSearchIds.length < allSearchIds.length);
+  assert.deepEqual(page.data.cards.map((card: any) => card.id), fizzSearchIds);
+  assert.equal(page.data.query, '金酒');
+  select('all');
+  assert.deepEqual(page.data.cards.map((card: any) => card.id), allSearchIds);
+  select('fizz');
+  page.clearSearch();
+  assert.equal(page.data.selectedFamily, 'fizz');
+  assert.ok(page.data.cards.length > 0);
+  assert.ok(page.data.cards.every((card: any) => snapshot.cocktails.find((recipe) => recipe.id === card.id)?.family === 'fizz'));
+  page.search({ detail: { value: '不存在的酒款' } });
+  assert.equal(page.data.cards.length, 0);
+  page.showAll();
+  assert.equal(page.data.query, '');
+  assert.equal(page.data.selectedFamily, 'all');
+  assert.equal(page.data.cards.length, snapshot.cocktails.length);
+});
 
 test('冷启动不使用旧 39 杯缓存，首次成功后加载全量后端目录并复用在途请求', async () => {
   const { wx, storage, requests } = catalogMock();
@@ -200,6 +292,51 @@ function imageMock() {
   };
   return { wx, fs, files, requests, validImage };
 }
+
+test('图片组件重复接收相同属性时保留画面和在途请求，换图或版本变化时更新', async () => {
+  const { wx, requests } = imageMock();
+  const updates: any[] = [];
+  let component: any;
+  let observe: () => void;
+  client(wx, undefined, undefined, (options) => {
+    component = {
+      data: structuredClone(options.data),
+      properties: { path: imagePath, version: 'one' },
+      ...options.methods,
+      setData(update: any) { updates.push(update); Object.assign(this.data, update); },
+    };
+    observe = () => options.observers['path, version'].call(component, component.properties.path, component.properties.version);
+  })('miniprogram/components/cocktail-image/index');
+  observe!();
+  component.data.visible = true;
+  await component.load();
+  const firstPath = component.data.localPath;
+  assert.ok(firstPath);
+  updates.length = 0;
+  observe!();
+  observe!();
+  assert.equal(updates.length, 0);
+  assert.equal(component.data.localPath, firstPath);
+  assert.equal(requests.length, 1);
+
+  component.properties.version = 'two';
+  observe!();
+  assert.equal(component.data.localPath, '');
+  const requestId = component.data.requestId;
+  observe!();
+  assert.equal(component.data.requestId, requestId);
+  await new Promise((done) => setImmediate(done));
+  assert.ok(component.data.localPath);
+  assert.notEqual(component.data.localPath, firstPath);
+  assert.equal(requests.length, 2);
+
+  component.properties.path = snapshot.cocktails[1].image_original_url;
+  observe!();
+  await new Promise((done) => setImmediate(done));
+  assert.ok(component.data.localPath);
+  assert.equal(requests.length, 3);
+  assert.equal(requests[2].path, component.properties.path);
+});
 
 test('图片经云托管二进制下载并去重、落盘复用，目录版本变化使旧图失效', async () => {
   const { wx, files, requests } = imageMock();

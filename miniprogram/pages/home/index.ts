@@ -2,6 +2,7 @@ import { familyOptions } from '../../shared/catalog';
 import { getDailyCocktail, normalizeIngredientIds } from '../../shared/matching';
 import { catalogFailureNotice, getCatalog, refreshCatalog } from '../../services/catalog';
 import { readList } from '../../services/storage';
+import { openRecipe } from '../../services/clicks';
 import type { Cocktail, Ingredient } from '../../shared/types';
 import { RecipeCard, toCard } from '../../utils/view-model';
 
@@ -20,9 +21,10 @@ Page({
     const owned = normalizeIngredientIds(readList('bar'), catalog.ingredients);
     const ingredientById = new Map(catalog.ingredients.map((ingredient) => [ingredient.id, ingredient]));
     const query = normalizeSearchText(this.data.query);
-    const filtered = catalog.cocktails.filter((recipe) =>
-      (this.data.selectedFamily === 'all' || recipe.family === this.data.selectedFamily) &&
-      (!query || recipeSearchText(recipe, ingredientById).includes(query)),
+    // 先从全量酒单搜索，再按当前 tab 展示命中的配方。
+    const matches = catalog.cocktails.filter((recipe) => !query || recipeSearchText(recipe, ingredientById).includes(query));
+    const filtered = matches.filter((recipe) =>
+      this.data.selectedFamily === 'all' || recipe.family === this.data.selectedFamily,
     );
     const daily = getDailyCocktail(catalog.cocktails);
     this.setData({
@@ -45,9 +47,10 @@ Page({
     this.setData({ selectedFamily: event.currentTarget.dataset.id as string });
     this.render();
   },
-  search(event: WechatMiniprogram.Input) { this.setData({ query: event.detail.value }); this.render(); },
-  clearSearch() { this.setData({ query: '', selectedFamily: 'all' }); this.render(); },
-  openDaily() { if (this.data.daily.id) wx.navigateTo({ url: `/pages/detail/index?id=${encodeURIComponent(this.data.daily.id)}` }); },
+  search(event: WechatMiniprogram.Input) { this.setData({ query: event.detail.value, selectedFamily: 'all' }); this.render(); },
+  clearSearch() { this.setData({ query: '' }); this.render(); },
+  showAll() { this.setData({ query: '', selectedFamily: 'all' }); this.render(); },
+  openDaily() { openRecipe(this.data.daily.id); },
   openFavorites() { wx.navigateTo({ url: '/pages/collection/index?mode=favorites' }); },
   openBar() { wx.switchTab({ url: '/pages/bar/index' }); },
 });

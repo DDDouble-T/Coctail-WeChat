@@ -34,6 +34,8 @@ npm run deploy:package
 
 种子使用稳定文档 ID，可重复执行，保留数据库中额外新增的酒谱。部署包输出到 `artifacts/cat-tavern-tcb-deploy.tar.gz`，包含全量酒谱、TCB 导入数据和全部酒款图片。具体配置、发布命令与验收见 [部署说明](docs/deployment.md)，GitHub 自动构建绑定见 [原生流水线配置](docs/git-pipeline.md)。打包完成不代表已发布到云端。
 
+卡片点击通过 `POST /api/cocktails/:id/clicks` 按酒谱累计，独立保存到 TCB `cocktail_stats` 集合。上线前需创建该集合并设置仅管理端可读写；酒谱初始化不会覆盖统计。普通卡片和今日特调成功打开详情各计一次，统计失败不影响浏览，详见部署说明。
+
 ## 数据与图片
 
 `server/data/catalog.json` 是服务端完整目录；`data/iba-cocktails/recipes-source.json` 保存官方原文，`server/data/iba-editorial.json` 保存审核后的中文表达和材料映射。当前按 IBA 官网 sitemap 收录全部 102 款，官方新增或调整时通过以下命令更新并复核：

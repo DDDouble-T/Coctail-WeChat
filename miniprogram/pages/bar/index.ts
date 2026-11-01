@@ -5,6 +5,8 @@ import { readList, writeList } from '../../services/storage';
 import { RecipeCard, toCard } from '../../utils/view-model';
 import { IngredientGroup } from '../../shared/types';
 
+const baseIngredientOrder = [/金酒/, /朗姆酒/, /威士忌/, /伏特加/, /龙舌兰/, /白兰地/, /.*/];
+
 Page({
   data: {
     selected: [] as { id: string; name: string }[],
@@ -27,6 +29,8 @@ Page({
   },
   render() {
     const catalog = getCatalog();
+    // 仅调整材料柜文案，保留配方中的具体酒种和匹配 ID。
+    const ingredients = catalog.ingredients.map((item) => item.id === 'white-rum' ? { ...item, name_zh: '朗姆酒' } : item);
     const ids = normalizeIngredientIds(readList('bar'), catalog.ingredients);
     const owned = new Set(ids);
     const matches = owned.size ? matchCocktails(catalog.cocktails, ids, catalog.ingredients) : [];
@@ -34,16 +38,29 @@ Page({
     this.setData({
       total: catalog.cocktails.length, version: catalog.version,
       ownedCount: ids.length,
-      selected: catalog.ingredients.filter((item) => owned.has(item.id)).map((item) => ({ id: item.id, name: item.name_zh })),
+      selected: ingredients.filter((item) => owned.has(item.id)).map((item) => ({ id: item.id, name: item.name_zh })),
       groups: ingredientGroups.map((group) => {
-        const items = catalog.ingredients.filter((item) => item.group === group.id).map((item) => ({ id: item.id, name: item.name_zh, english: item.name_en, selected: owned.has(item.id) }));
+        const items = ingredients.filter((item) => item.group === group.id).map((item) => ({ id: item.id, name: item.name_zh, english: item.name_en, selected: owned.has(item.id) }));
+        if (group.id === 'base') {
+          items.sort((left, right) => baseIngredientOrder.findIndex((pattern) => pattern.test(left.name)) - baseIngredientOrder.findIndex((pattern) => pattern.test(right.name)));
+        }
         return { ...group, open: group.id === this.data.openGroup, count: items.filter((item) => item.selected).length, items };
       }),
       cards: visible.map((match) => toCard(match.cocktail, ids, true, match)),
       readyCount: matches.filter((match) => match.can_make).length,
     });
   },
-  toggleGroup(event: WechatMiniprogram.TouchEvent) { const id = event.currentTarget.dataset.id as string; this.setData({ openGroup: this.data.openGroup === id ? '' : id }); this.render(); },
+  toggleGroup(event: WechatMiniprogram.TouchEvent) {
+    const id = event.currentTarget.dataset.id as string;
+    const openGroup = this.data.openGroup === id ? '' : id;
+    this.setData({
+      openGroup,
+      groups: this.data.groups.map((group) => ({ ...group, open: group.id === openGroup })),
+    }, () => {
+      // 等分类布局更新后再回顶，保持初始未滚动的位置。
+      wx.pageScrollTo({ scrollTop: 0, duration: 200 });
+    });
+  },
   toggleIngredient(event: WechatMiniprogram.TouchEvent) {
     const id = event.currentTarget.dataset.id as string;
     const ids = normalizeIngredientIds(readList('bar'), getCatalog().ingredients);

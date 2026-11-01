@@ -2,16 +2,18 @@ import express, { type ErrorRequestHandler } from 'express';
 import path from 'node:path';
 import { rateLimit } from 'express-rate-limit';
 import type { CatalogRepository } from './catalog';
+import type { ClickRepository } from './clicks';
 
 interface AppOptions {
   repository: CatalogRepository;
+  clicks?: ClickRepository;
   trustProxyHops?: number;
   rateLimitMax?: number;
   onError?: (error: unknown) => void;
   mediaRoot?: string;
 }
 
-export function createApp({ repository, trustProxyHops = 0, rateLimitMax = 120, onError = console.error, mediaRoot = path.resolve('data/iba-cocktails') }: AppOptions) {
+export function createApp({ repository, clicks, trustProxyHops = 0, rateLimitMax = 120, onError = console.error, mediaRoot = path.resolve('data/iba-cocktails') }: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
   app.set('trust proxy', trustProxyHops === 0 ? false : trustProxyHops);
@@ -60,12 +62,43 @@ export function createApp({ repository, trustProxyHops = 0, rateLimitMax = 120, 
     message: { error: { code: 'TOO_MANY_REQUESTS', message: '请求频繁，请稍后重试' } },
   }));
   app.use('/api', (request, response, next) => {
+    if (/^\/cocktails\/[^/]+\/clicks\/?$/.test(request.path)) {
+      if (request.method !== 'POST') {
+        response.set('Allow', 'POST');
+        response.status(405).json({ error: { code: 'METHOD_NOT_ALLOWED', message: '此接口仅支持 POST' } });
+        return;
+      }
+      next();
+      return;
+    }
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       response.set('Allow', 'GET, HEAD');
       response.status(405).json({ error: { code: 'METHOD_NOT_ALLOWED', message: '此接口仅支持读取' } });
       return;
     }
     next();
+  });
+
+  app.post('/api/cocktails/:id/clicks', async (request, response) => {
+    const { id } = request.params;
+    if (!/^[a-z0-9][a-z0-9_-]{0,79}$/i.test(id)) {
+      response.status(400).json({ error: { code: 'INVALID_ID', message: '酒谱编号格式无效' } });
+      return;
+    }
+    try {
+      const catalog = await repository.getCatalog();
+      if (!catalog.cocktails.some((cocktail) => cocktail.id === id)) {
+        response.status(404).json({ error: { code: 'COCKTAIL_NOT_FOUND', message: '没有找到这杯酒' } });
+        return;
+      }
+      if (!clicks) throw new Error('点击统计未配置');
+      // 每次请求仅增加一次，不接受客户端指定计数或目标集合。
+      await clicks.recordClick(id);
+      response.status(204).end();
+    } catch (error) {
+      onError(error);
+      response.status(503).json({ error: { code: 'CLICK_UNAVAILABLE', message: '点击统计暂时不可用' } });
+    }
   });
 
   app.get('/api/catalog', async (_request, response) => {

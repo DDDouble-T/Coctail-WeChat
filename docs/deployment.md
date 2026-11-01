@@ -85,7 +85,7 @@ CloudBase CLI 发布方法见 [CLI 说明](cloudbase-cli.md)。需要真实登�
 
 图片同样经 `wx.cloud.callContainer` 获取二进制并写入设备缓存，避免依赖额外图片域名。云托管需要允许小程序访问 `/api/*` 和 `/media/cocktails/*`。图片失败显示占位；首次加载需联网。图片样式保留 `aspectFill` 撑满裁剪。小程序包只保留界面图标、猫咪 IP 和通用占位资源。
 
-公开只读接口：
+公开接口：
 
 | 接口 | 用途 |
 | --- | --- |
@@ -93,10 +93,15 @@ CloudBase CLI 发布方法见 [CLI 说明](cloudbase-cli.md)。需要真实登�
 | `GET /readyz` | 绕过目录缓存检查 TCB 数据，失败为 503 |
 | `GET /api/catalog` | `{ data: { version, cocktails, ingredients } }` |
 | `GET /api/cocktails/:id` | 酒谱详情；无效 ID 返回 400，不存在返回 404 |
+| `POST /api/cocktails/:id/clicks` | 指定酒谱点击数加一；成功返回 204，无效 ID 为 400、不存在为 404、统计失败为 503 |
 | `GET /media/cocktails/crayon/:filename` | 蜡笔图 |
 | `GET /media/cocktails/originals/:filename` | 原图 |
 
 API 默认每个连接 IP 每分钟 120 次，静态图片和健康探针不占 API 限额。多实例时按实例限流；生产网关需按实际代理配置，否则共享出口可能共用额度。
+
+点击统计上线前，在 TCB 新建 `cocktail_stats` 集合，权限同样设为 `ADMINONLY`（客户端禁止直接读写），并确认服务端凭证具有事务读写权限。每款酒在首次点击时自动创建以酒谱 ID 为 `_id` 的文档，包含 `id`、累计 `click_count` 和 UTC ISO 格式的 `last_clicked_at`；没有文档表示零次。事务保证并发累加，酒谱导入和 seed 不触碰此集合。后续热门 Tab 可按 `click_count` 降序读取，届时按查询需求补充索引。
+
+普通卡片及今日特调成功打开详情后异步上报；详情刷新、收藏、材料操作不计数。该指标为累计点击次数，同一用户再次打开仍计数，不代表独立访客数。请求失败不阻塞浏览、不自动重试，因此断网或响应丢失时可能漏计；目前沿用 API IP 限流，不提供严格防刷保证。本地未配置 TCB 时仅使用进程内临时计数，重启归零。仅发布后端不足以采集，小程序也需发布包含上报逻辑的新版本。
 
 ## 5. 发布验收
 

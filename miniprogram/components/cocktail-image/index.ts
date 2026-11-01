@@ -1,6 +1,7 @@
 import { invalidateImage, loadImage } from '../../services/images';
 
 const observers = new WeakMap<object, WechatMiniprogram.IntersectionObserver>();
+const imageKeys = new WeakMap<object, string>();
 
 Component({
   properties: {
@@ -9,7 +10,11 @@ Component({
   },
   data: { localPath: '', failed: false, loading: false, visible: false, requestId: 0 },
   observers: {
-    'path, version'() {
+    'path, version'(path: string, version: string) {
+      // 页面重绘会再次下发相同属性；保留已显示图片及在途请求，避免切换 Tab 时闪烁。
+      const key = JSON.stringify([path, version]);
+      if (imageKeys.get(this) === key) return;
+      imageKeys.set(this, key);
       this.setData({ localPath: '', failed: false, requestId: this.data.requestId + 1 });
       if (this.data.visible) void this.load();
     },
@@ -33,6 +38,7 @@ Component({
     detached() {
       observers.get(this)?.disconnect();
       observers.delete(this);
+      imageKeys.delete(this);
       this.data.requestId++;
     },
   },
